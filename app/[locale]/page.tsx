@@ -68,8 +68,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           }}
         />
         <Container>
-          <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
-            <div className="relative space-y-8 text-center lg:pr-8 lg:text-left z-10">
+          <div className="flex flex-col lg:grid lg:items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="relative space-y-8 text-center lg:pr-8 lg:text-left z-10 w-full overflow-hidden px-4 md:px-0">
               <h1 className="mx-auto lg:mx-0 max-w-xl text-5xl font-bold leading-[1.05] tracking-tight text-text sm:text-6xl md:text-7xl lg:text-[5rem] drop-shadow-sm">
                 {t.rich('title', {
                   span: (chunks) => <span className="block hero-fade-up">{chunks}</span>,
@@ -79,14 +79,14 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               <p className="mx-auto lg:mx-0 max-w-lg hero-fade-up hero-delay-3 text-base text-muted md:text-lg font-medium leading-relaxed">
                 {t('subtitle')}
               </p>
-              <div className="mx-auto lg:mx-0 grid max-w-xl gap-4 sm:grid-cols-2">
+              <div className="mx-auto lg:mx-0 flex flex-col sm:grid max-w-xl gap-4 sm:grid-cols-2 w-full">
                 <div className="hero-fade-up hero-delay-4 w-full">
                   <ButtonLink
                     href={`/${locale}/hazir-capdanalar`}
                     variant="secondary"
                     size="lg"
                     fullWidth
-                    className="border-text/15 backdrop-blur-md shadow-sm"
+                    className="border-text/15 backdrop-blur-md shadow-sm w-full"
                   >
                     {t('cta_select')}
                   </ButtonLink>
@@ -99,14 +99,14 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                     variant="primary"
                     size="lg"
                     fullWidth
-                    className="relative"
+                    className="relative w-full"
                   >
                     <span>{t('cta_create')}</span>
                   </ButtonLink>
                   <p className="mt-3 text-[10px] uppercase tracking-[0.2em] font-medium text-[var(--accent-color)]/90">{t('builder_stats')}</p>
                 </div>
               </div>
-              <div className="mx-auto lg:mx-0 flex max-w-xl gap-3 overflow-x-auto pb-2 text-[11px] font-semibold tracking-wide text-text/90 sm:flex-wrap sm:justify-center lg:justify-start sm:overflow-visible mix-blend-plus-lighter">
+              <div className="mx-auto lg:mx-0 flex max-w-[90vw] gap-3 overflow-x-auto pb-4 pt-1 px-1 text-[11px] font-semibold tracking-wide text-text/90 lg:justify-start mix-blend-plus-lighter scrollbar-hide snap-x">
                 {[
                   t('features.drop'),
                   t('features.custom'),
@@ -115,15 +115,15 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 ].map((item) => (
                   <span
                     key={item}
-                    className="whitespace-nowrap flex items-center gap-1.5 rounded-full border border-text/5 bg-surface/60 px-4 py-2 shadow-sm backdrop-blur-md"
+                    className="snap-center whitespace-nowrap flex items-center gap-1.5 rounded-full border border-text/5 bg-surface/60 px-4 py-2 shadow-sm backdrop-blur-md"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-color)] opacity-70" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-color)] opacity-70 flex-shrink-0" />
                     {item}
                   </span>
                 ))}
               </div>
             </div>
-            <div className="relative mx-auto w-full max-w-md lg:max-w-none lg:pl-10">
+            <div className="relative mx-auto w-[90%] max-w-md lg:w-full lg:max-w-none lg:pl-10 pb-8 lg:pb-0">
               <div className="absolute -inset-4 rounded-[40px] bg-gradient-to-br from-surface to-bg/50 blur-xl opacity-50" />
               <div className="group drill-poster relative rounded-[32px] border border-text/10 bg-surface/80 p-3 shadow-2xl backdrop-blur-sm transition-all duration-500 hover:shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
                 <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] bg-bg border border-text/5">
@@ -137,7 +137,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                     className="h-full w-full object-cover transition duration-700 ease-out motion-safe:group-hover:scale-105 motion-safe:group-hover:rotate-1"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 opacity-60 transition-opacity duration-300 group-hover:opacity-40" />
-                  <div className="absolute left-5 top-5 flex flex-col gap-2.5 z-10">
+                  <div className="absolute left-4 lg:left-5 top-4 lg:top-5 flex flex-col gap-2.5 z-10 w-full pr-4">
                     <span className="drill-stamp rounded-full bg-black/80 backdrop-blur-md px-4 py-2 text-[10px] font-bold tracking-wider text-white shadow-lg border border-white/10">
                       FEATURED
                     </span>

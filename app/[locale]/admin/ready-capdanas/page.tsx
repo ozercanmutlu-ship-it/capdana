@@ -218,8 +218,38 @@ export default function ReadyCapdanasPage() {
                             </div>
 
                             <div className="space-y-1">
-                                <label className="text-xs font-semibold">Görsel URL (Ana)</label>
-                                <input required value={editingItem.image} onChange={e => setEditingItem({ ...editingItem, image: e.target.value })} placeholder="/images/ready/ornek.png" className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-neon outline-none" />
+                                <label className="text-xs font-semibold flex justify-between">
+                                    <span>Görsel Yükle (veya URL girin)</span>
+                                </label>
+                                <div className="flex gap-2">
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={async (e) => {
+                                            const file = e.target.files?.[0];
+                                            if (!file) return;
+                                            const toastId = show("Yükleniyor...", "Görsel Vercel Blob'a yükleniyor.");
+
+                                            try {
+                                                const res = await fetch(`/api/admin/upload?filename=${encodeURIComponent(file.name)}`, {
+                                                    method: "POST",
+                                                    body: file,
+                                                });
+                                                if (res.ok) {
+                                                    const blob = await res.json();
+                                                    setEditingItem({ ...editingItem, image: blob.url });
+                                                    show("Başarılı", "Görsel yüklendi!");
+                                                } else {
+                                                    show("Hata", "Yükleme başarısız oldu.");
+                                                }
+                                            } catch (err) {
+                                                show("Hata", "Görsel yüklenirken bir hata oluştu.");
+                                            }
+                                        }}
+                                        className="text-xs file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-[var(--accent-color)]/20 file:text-[var(--accent-color)] hover:file:bg-[var(--accent-color)]/30 w-full"
+                                    />
+                                </div>
+                                <input required value={editingItem.image} onChange={e => setEditingItem({ ...editingItem, image: e.target.value })} placeholder="/images/ready/ornek.png" className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 mt-2 text-sm focus:border-[var(--accent-color)] outline-none text-muted" />
                             </div>
 
                             <div className="flex justify-end gap-3 pt-4 border-t border-text/10">
