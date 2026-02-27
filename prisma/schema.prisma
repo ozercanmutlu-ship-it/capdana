@@ -1,0 +1,87 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  role          String    @default("USER") // USER or ADMIN
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  orders Order[]
+}
+
+model Order {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  status      String @default("PENDING") // PENDING, PROCESSING, SHIPPED, DELIVERED, CANCELLED
+  totalAmount Float
+
+  items    String // JSON string of cart items
+  shipping String // JSON string of shipping details
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SiteSettings {
+  id          String   @id @default("default")
+  readyPrice  Float    @default(333)
+  customPrice Float    @default(444)
+  updatedAt   DateTime @updatedAt
+}
+
+model CapFront {
+  id        String   @id
+  name      String
+  image     String
+  slug      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  readyCapdanas ReadyCapdana[]
+}
+
+model Bandana {
+  id        String   @id
+  name      String
+  image     String
+  slug      String   @unique
+  rarity    String
+  color     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  readyCapdanas ReadyCapdana[]
+}
+
+model ReadyCapdana {
+  id     String @id
+  name   String
+  image  String
+  slug   String @unique
+  rarity String
+  price  Float?
+  tags   String // JSON stringified array or comma separated
+
+  frontId   String
+  bandanaId String
+
+  front   CapFront @relation(fields: [frontId], references: [id], onDelete: Cascade)
+  bandana Bandana  @relation(fields: [bandanaId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

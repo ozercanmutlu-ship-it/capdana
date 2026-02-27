@@ -1,64 +1,70 @@
 "use client";
 
 import type { ReactNode } from "react";
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 export type CartItem = {
-  productId: string;
-  modelId: string;
+  id: string;
+  type: "ready" | "custom";
+  name: string;
+  price: number;
   quantity: number;
+  slug?: string;
+  frontId?: string;
+  bandanaId?: string;
+  image?: string;
 };
 
 type CartContextValue = {
   items: CartItem[];
   addItem: (item: CartItem) => void;
-  updateItemQuantity: (productId: string, modelId: string, quantity: number) => void;
-  removeItem: (productId: string, modelId: string) => void;
+  updateItemQuantity: (id: string, quantity: number) => void;
+  removeItem: (id: string) => void;
   clearCart: () => void;
   totalQuantity: number;
 };
 
 const CartContext = createContext<CartContextValue | undefined>(undefined);
 
-const STORAGE_KEY = "senteWearCart";
+const STORAGE_KEY = "capdanaCart";
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [items, setItems] = useState<CartItem[]>([]);
-  const hasHydrated = useRef(false);
+  const hasLoadedRef = useRef(false);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
     const stored = window.localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      try {
-        const parsed = JSON.parse(stored) as CartItem[];
-        if (Array.isArray(parsed)) {
-          setItems(parsed);
-        }
-      } catch {
-        setItems([]);
-      }
+    if (!stored) {
+      hasLoadedRef.current = true;
+      return;
     }
-    hasHydrated.current = true;
+    try {
+      const parsed = JSON.parse(stored) as CartItem[];
+      setItems(Array.isArray(parsed) ? parsed : []);
+    } catch {
+      setItems([]);
+    } finally {
+      hasLoadedRef.current = true;
+    }
   }, []);
 
   useEffect(() => {
-    if (!hasHydrated.current) return;
+    if (!hasLoadedRef.current) return;
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
   }, [items]);
 
   const addItem = (item: CartItem) => {
+    trackEvent("add_to_cart", {
+      item_id: item.id,
+      item_name: item.name,
+      currency: "TRY",
+      value: item.price * item.quantity,
+      quantity: item.quantity,
+      item_category: item.type,
+    });
     setItems((prev) => {
-      const existingIndex = prev.findIndex(
-        (entry) => entry.productId === item.productId && entry.modelId === item.modelId
-      );
+      const existingIndex = prev.findIndex((entry) => entry.id === item.id);
       if (existingIndex === -1) {
         return [...prev, item];
       }
@@ -70,22 +76,12 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  const updateItemQuantity = (productId: string, modelId: string, quantity: number) => {
-    setItems((prev) =>
-      prev.map((entry) =>
-        entry.productId === productId && entry.modelId === modelId
-          ? { ...entry, quantity }
-          : entry
-      )
-    );
+  const updateItemQuantity = (id: string, quantity: number) => {
+    setItems((prev) => prev.map((entry) => (entry.id === id ? { ...entry, quantity } : entry)));
   };
 
-  const removeItem = (productId: string, modelId: string) => {
-    setItems((prev) =>
-      prev.filter(
-        (entry) => !(entry.productId === productId && entry.modelId === modelId)
-      )
-    );
+  const removeItem = (id: string) => {
+    setItems((prev) => prev.filter((entry) => entry.id !== id));
   };
 
   const clearCart = () => setItems([]);

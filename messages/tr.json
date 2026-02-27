@@ -1,0 +1,197 @@
+{
+    "Common": {
+        "title": "Capdana",
+        "description": "Tek ürün, iki seçim. Özelleştirilebilir premium cap ve bandana kombinleri.",
+        "nav": {
+            "home": "Ana Sayfa",
+            "collection": "Hazır Kombinler",
+            "builder": "Tarzını Yarat",
+            "cart": "Sepet",
+            "open_menu": "Menüyü aç",
+            "close_menu": "Menüyü kapat",
+            "menu": "Menü",
+            "mobile_desc": "Tek ürün, iki seçim. Havale/EFT ile ödeme.",
+            "marquee": "CAPDANA • TEK ÜRÜN • İKİ YOL • BİRİ SENİN • TARZINI SEÇ • TARZINI YARAT •"
+        },
+        "step": "ADIM 0{number}",
+        "added_toast": "SEPETE EKLENDİ"
+    },
+    "Hero": {
+        "title": "Tek ürün. İki yol. Biri senin.",
+        "subtitle": "Seçilmiş Capdana hazırdır. Özel tasarım senin kararındır.",
+        "cta_select": "Tarzını Seç",
+        "cta_create": "Tarzını Yarat",
+        "ready_count": "7 Hazır Kombin",
+        "builder_stats": "33+ Renk Seçeneği",
+        "features": {
+            "drop": "Seçilmiş Drop",
+            "custom": "Özel Tasarım",
+            "shipping": "1–3 Gün Kargo",
+            "payment": "Havale/EFT"
+        },
+        "builder_section": {
+            "tag": "Tarzını Yarat",
+            "title": "Kendi kombinin.",
+            "desc": "3 cap front ve 33 bandana arasından seç. Layer’lı önizleme ile hızlı karar ver.",
+            "f1": "3 Cap Front",
+            "f2": "33 Bandana",
+            "f3": "Paylaşılabilir Link"
+        },
+        "why_section": {
+            "tag": "Capdana",
+            "title": "Neden Capdana?",
+            "item1_title": "Seçilmiş",
+            "item1_desc": "7 hazır kombin. Düzenlenemez, hızlı seçim.",
+            "item2_title": "Senin Tasarımın",
+            "item2_desc": "Ön panel ve bandana seçimleriyle kişisel kombin.",
+            "item3_title": "Tek Akış",
+            "item3_desc": "Havale/EFT ile net, sade bir ödeme adımı."
+        }
+    },
+    "Collection": {
+        "title": "Seçilmiş Capdana",
+        "search_placeholder": "İsim veya tag ile ara...",
+        "filter": "Filtrele",
+        "sort_newest": "En Yeniler",
+        "sort_rarity_desc": "Nadirlik (Önce Nadir)",
+        "sort_rarity_asc": "Nadirlik (Önce Yaygın)",
+        "rarity_label": "Nadirlik",
+        "view_product": "İncele",
+        "no_results": "Sonuç bulunamadı",
+        "no_results_desc": "Farklı bir arama terimi veya filtre deneyebilirsin.",
+        "show_all": "Tüm Ürünleri Göster",
+        "found_count": "{count} ürün bulundu",
+        "clear_filters": "Filtreleri Temizle",
+        "tag_curated": "Seçilmiş",
+        "curated_desc": "Düzenlenemez. Seçilmiş kombinler, tek fiyat."
+    },
+    "Builder": {
+        "title": "Capdana Builder",
+        "subtitle": "3 ön panel ve 33 bandana arasından seç. Özel tasarımın tek fiyat.",
+        "description_metadata": "Ön panel ve bandana seç. Özel tasarım Capdana’nı oluştur.",
+        "drop_info": "Drop sistemi: bazı bandanalar nadir. 1/1 tek adet.",
+        "step_front": "Ön Panel Seç",
+        "step_bandana": "Bandana Seç",
+        "step_preview": "Önizleme",
+        "step_cart": "Sepet",
+        "options_count": "{count} seçenek",
+        "not_selected": "Seçilmedi",
+        "add_to_cart": "Sepete Ekle",
+        "copy_link": "Linki Kopyala",
+        "copied": "Kopyalandı!",
+        "share_whatsapp": "WhatsApp ile Paylaş",
+        "share_message": "Capdana'da kendi Capdana kombinimi yaptım! Buradan inceleyebilirsin: {url}",
+        "instagram_hint": "Instagram için linki kopyalayarak paylaşabilirsin.",
+        "added_to_cart": "Ürün sepete eklendi!",
+        "error_select": "Lütfen önce tüm seçimleri yapın.",
+        "front_label": "Ön Panel",
+        "front_name": "Ön Panel {number}",
+        "custom_design": "Özel Tasarım",
+        "your_capdana": "Senin Capdana'n"
+    },
+    "Cart": {
+        "title": "Sepet",
+        "checkout_title": "Ödeme Adımı",
+        "checkout_desc": "Seçtiğin modelleri görüntüle ve ödeme adımına geç.",
+        "empty": "Sepetin boş.",
+        "subtotal": "Ara Toplam",
+        "total": "Bulut Toplam",
+        "shipping": "Kargo",
+        "free": "Ücretsiz",
+        "remove": "Kaldır",
+        "checkout_button": "Ödemeye Geç",
+        "order_summary": "Sipariş Özeti",
+        "items_count": "Ürün Sayısı",
+        "preview_label": "Önizleme",
+        "preview_zoom": "Önizlemeyi Büyüt",
+        "close": "Kapat",
+        "payment_info": "Ödeme yalnızca Havale/EFT ile alınır. Ödemeden sonra bilgileri paylaş."
+    },
+    "Payment": {
+        "title": "Havale/EFT ile Ödeme",
+        "notif_title": "Ödeme Bildirimi",
+        "success_title": "Sipariş Alındı",
+        "transfer_info": "Transfer Bilgileri",
+        "recipient": "ALICI",
+        "iban": "IBAN",
+        "description": "AÇIKLAMA",
+        "copy_desc_helper": "Bunu kopyalayıp açıklamaya yapıştır.",
+        "copied": "Kopyalandı",
+        "copy": "Kopyala",
+        "next_steps_helper": "Ödemeyi yaptıktan sonra 'Ödemeyi Yaptım' ile bilgilerini gönder.",
+        "payment_done_button": "Ödemeyi Yaptım",
+        "form": {
+            "full_name": "Ad Soyad",
+            "phone": "Telefon",
+            "email": "E-posta (opsiyonel)",
+            "address": "Adres",
+            "note": "Not"
+        },
+        "create_order_button": "Siparişi Oluştur",
+        "back": "Geri",
+        "summary": "ÖZET",
+        "total": "Toplam Tutar",
+        "quantity": "Adet",
+        "order_no": "Sipariş No",
+        "order_no_label": "Sipariş No",
+        "success_msg": "Ödeme bildiriminizi aldık. Ekibimiz en kısa sürede dönüş yapacaktır.",
+        "done": "Tamam",
+        "payment_tab": "Ödeme",
+        "copy_label": "Kopyala",
+        "copied_label": "Kopyalandı",
+        "total_row": "Toplam",
+        "products_title": "Ürünler",
+        "product_model": "Model",
+        "product_quantity": "Adet",
+        "product_total": "Tutar",
+        "unit": "adet"
+    },
+    "Order": {
+        "title": "Sipariş Onayı",
+        "success_desc": "Capdana siparişini tamamladın. WhatsApp ile ödeme bildirimini gönder.",
+        "status": "Siparişi Onayla",
+        "next_steps": "Sonraki Adımlar",
+        "payment_notice": "Ödemeyi banka hesabımıza gönderdin mi? Bildirim göndermek için aşağıdaki butona tıkla.",
+        "send_whatsapp": "WhatsApp ile Bildir",
+        "error_no_order": "Sipariş bilgisi bulunamadı. Ödeme bildirimini WhatsApp üzerinden gönderebilirsin.",
+        "whatsapp_template": "Merhaba,\n\nCapdana sipariş oluşturdum.\n\nSipariş No: {id}\nÜrünler: {summary}\nAdet: {quantity}\nTutar: {amount} TL\n\nHavale yaptım.",
+        "order_no": "Sipariş No",
+        "products": "Ürünler",
+        "quantity": "Adet",
+        "total": "Tutar"
+    },
+    "Footer": {
+        "description": "Tek ürün, iki seçim. Seçilmiş Capdana ve senin tasarımın için sade bir deneyim.",
+        "links_title": "Sayfalar",
+        "contact_title": "İletişim",
+        "coming_soon": "yakında"
+    },
+    "Testimonials": {
+        "title": "Capdana Hikayeleri",
+        "subtitle": "Yüzlerce memnun kullanıcı, binlerce farklı kombin. Senin hikayen hangisi?",
+        "verified": "Doğrulanmış Alıcı",
+        "purchased": "SATIN ALINAN ÜRÜN",
+        "reviews": {
+            "rev-01": {
+                "text": "Crimson Phantom kombinini aldım, kumaş kalitesi ve bandana dokusu beklediğimden çok daha premium. Özellikle paketleme hızı şaşırttı.",
+                "date": "2 gün önce"
+            },
+            "rev-02": {
+                "text": "Kendi tasarımımı yapmak çok keyifliydi. Shadow Walker front ile neon bandana uyumu efsane oldu. Sokakta herkes soruyor!",
+                "date": "1 hafta önce"
+            },
+            "rev-03": {
+                "text": "Minimal ama iddialı. Royal Guard modelindeki mor tonu tam istediğim gibi. 1OF1 drop'larını heyecanla bekliyorum.",
+                "date": "3 gün önce"
+            },
+            "rev-04": {
+                "text": "Capdana gerçekten bu işi biliyor. Drill estetiğini bozmadan bu kadar kaliteli bir ürün çıkarmak büyük başarı.",
+                "date": "5 gün önce"
+            },
+            "rev-05": {
+                "text": "Kargolama hızı ve ürünün kutusu bile prestij kokuyor. Midnight Drift kombinini kesinlikle tavsiye ederim.",
+                "date": "10 gün önce"
+            }
+        }
+    }
+}

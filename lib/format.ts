@@ -1,5 +1,5 @@
-export const formatPrice = (value: number) =>
-  new Intl.NumberFormat("tr-TR", {
+export const formatPrice = (value: number, locale: string = "tr-TR") =>
+  new Intl.NumberFormat(locale, {
     style: "currency",
     currency: "TRY",
     maximumFractionDigits: 0,

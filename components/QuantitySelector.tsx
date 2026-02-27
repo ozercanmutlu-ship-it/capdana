@@ -21,15 +21,17 @@ export const QuantitySelector = ({
       <button
         type="button"
         onClick={handleDecrease}
-        className="h-9 w-9 rounded-full border border-neutral-200 text-lg hover:border-neutral-500"
+        className="h-9 w-9 rounded-full border border-text/5 bg-surface text-lg text-text hover:border-neon/40 transition duration-200"
       >
         -
       </button>
-      <span className="min-w-[40px] text-center text-sm font-medium">{quantity}</span>
+      <span className="min-w-[40px] text-center text-sm font-medium text-text">
+        {quantity}
+      </span>
       <button
         type="button"
         onClick={handleIncrease}
-        className="h-9 w-9 rounded-full border border-neutral-200 text-lg hover:border-neutral-500"
+        className="h-9 w-9 rounded-full border border-text/5 bg-surface text-lg text-text hover:border-neon/40 transition duration-200"
       >
         +
       </button>

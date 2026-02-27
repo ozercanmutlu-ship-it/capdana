@@ -1,0 +1,197 @@
+{
+    "Common": {
+        "title": "Capdana",
+        "description": "One product, two choices. Customizable premium cap and bandana combinations.",
+        "nav": {
+            "home": "Home",
+            "collection": "Ready Sets",
+            "builder": "Create Your Style",
+            "cart": "Cart",
+            "open_menu": "Open menu",
+            "close_menu": "Close menu",
+            "menu": "Menu",
+            "mobile_desc": "One product, two choices. Pay via Bank Transfer.",
+            "marquee": "CAPDANA • ONE PRODUCT • TWO PATHS • ONE IS YOURS • CHOOSE YOUR STYLE • DESIGN YOURS •"
+        },
+        "step": "STEP 0{number}",
+        "added_toast": "ADDED TO CART"
+    },
+    "Hero": {
+        "title": "One product. Two paths. One is yours.",
+        "subtitle": "Curated Capdana is ready. Custom design is your call.",
+        "cta_select": "Choose Style",
+        "cta_create": "Design Yours",
+        "ready_count": "7 Ready Combinations",
+        "builder_stats": "33+ Color Options",
+        "features": {
+            "drop": "Curated Drop",
+            "custom": "Custom Design",
+            "shipping": "1–3 Days Shipping",
+            "payment": "Bank Transfer"
+        },
+        "builder_section": {
+            "tag": "Create Your Style",
+            "title": "Your own combination.",
+            "desc": "Choose from 3 cap fronts and 33 bandanas. Fast decisions with layered previews.",
+            "f1": "3 Cap Fronts",
+            "f2": "33 Bandanas",
+            "f3": "Shareable Link"
+        },
+        "why_section": {
+            "tag": "Capdana",
+            "title": "Why Capdana?",
+            "item1_title": "Curated",
+            "item1_desc": "7 ready combinations. Non-editable, fast selection.",
+            "item2_title": "Your Design",
+            "item2_desc": "Personal combination with front panel and bandana choices.",
+            "item3_title": "Single Flow",
+            "item3_desc": "Clear, simple payment step with Bank Transfer."
+        }
+    },
+    "Collection": {
+        "title": "Selected Capdana",
+        "search_placeholder": "Search by name or tag...",
+        "filter": "Filter",
+        "sort_newest": "Newest",
+        "sort_rarity_desc": "Rarity (High to Low)",
+        "sort_rarity_asc": "Rarity (Low to High)",
+        "rarity_label": "Rarity",
+        "view_product": "View",
+        "no_results": "No results found",
+        "no_results_desc": "Try a different search term or filter.",
+        "show_all": "Show All Products",
+        "found_count": "{count} products found",
+        "clear_filters": "Clear Filters",
+        "tag_curated": "Curated",
+        "curated_desc": "Non-editable. Curated combinations, single price."
+    },
+    "Builder": {
+        "title": "Capdana Builder",
+        "subtitle": "Choose from 3 front panels and 33 bandanas. One price for your custom design.",
+        "description_metadata": "Choose front panel and bandana. Create your custom Capdana.",
+        "drop_info": "Drop system: some bandanas are rare. 1/1 unique units.",
+        "step_front": "Select Front Panel",
+        "step_bandana": "Select Bandana",
+        "step_preview": "Preview",
+        "step_cart": "Cart",
+        "options_count": "{count} options",
+        "not_selected": "Not selected",
+        "add_to_cart": "Add to Cart",
+        "copy_link": "Copy Link",
+        "copied": "Copied!",
+        "share_whatsapp": "Share on WhatsApp",
+        "share_message": "I created my own Capdana combo on Capdana! Check it out here: {url}",
+        "instagram_hint": "You can copy the link and share it for Instagram.",
+        "added_to_cart": "Product added to cart!",
+        "error_select": "Please complete all selections first.",
+        "custom_design": "Custom Design",
+        "front_label": "Front Panel",
+        "front_name": "Front Panel {number}",
+        "your_capdana": "Your Capdana"
+    },
+    "Cart": {
+        "title": "Cart",
+        "checkout_title": "Checkout",
+        "checkout_desc": "Review your selected models and proceed to payment.",
+        "empty": "Your cart is empty.",
+        "subtotal": "Subtotal",
+        "total": "Total",
+        "shipping": "Shipping",
+        "free": "Free",
+        "remove": "Remove",
+        "checkout_button": "Proceed to Checkout",
+        "order_summary": "Order Summary",
+        "items_count": "Items Count",
+        "preview_label": "Preview",
+        "preview_zoom": "Zoom Preview",
+        "close": "Close",
+        "payment_info": "Payment is only accepted via Bank Transfer. Share details after payment."
+    },
+    "Payment": {
+        "title": "Payment via Bank Transfer",
+        "notif_title": "Payment Notification",
+        "success_title": "Order Received",
+        "transfer_info": "Transfer Details",
+        "recipient": "RECIPIENT",
+        "iban": "IBAN",
+        "description": "DESCRIPTION",
+        "copy_desc_helper": "Copy this and paste into description.",
+        "copied": "Copied",
+        "copy": "Copy",
+        "next_steps_helper": "After making the payment, send your details via 'I Have Paid'.",
+        "payment_done_button": "I Have Paid",
+        "form": {
+            "full_name": "Full Name",
+            "phone": "Phone",
+            "email": "Email (optional)",
+            "address": "Address",
+            "note": "Note"
+        },
+        "create_order_button": "Create Order",
+        "back": "Back",
+        "summary": "SUMMARY",
+        "total": "Total Amount",
+        "quantity": "Quantity",
+        "order_no": "Order No",
+        "order_no_label": "Order No",
+        "success_msg": "We have received your payment notification. Our team will get back to you as soon as possible.",
+        "done": "Done",
+        "payment_tab": "Payment",
+        "copy_label": "Copy",
+        "copied_label": "Copied",
+        "total_row": "Total",
+        "products_title": "Products",
+        "product_model": "Model",
+        "product_quantity": "Quantity",
+        "product_total": "Total Amount",
+        "unit": "qty"
+    },
+    "Order": {
+        "title": "Order Confirmation",
+        "success_desc": "You have completed your Capdana order. Send the payment notification via WhatsApp.",
+        "status": "Order Success",
+        "next_steps": "Next Steps",
+        "payment_notice": "Have you sent the payment to our bank account? Click the button below to send a notification.",
+        "send_whatsapp": "Notify via WhatsApp",
+        "error_no_order": "Order information not found. You can send the payment notification via WhatsApp.",
+        "whatsapp_template": "Hello,\n\nI have placed a Capdana order.\n\nOrder No: {id}\nProducts: {summary}\nQuantity: {quantity}\nAmount: {amount} TL\n\nI have sent the transfer.",
+        "order_no": "Order No",
+        "products": "Products",
+        "quantity": "Quantity",
+        "total": "Total Amount"
+    },
+    "Footer": {
+        "description": "One product, two choices. A simple experience for selected Capdana and your custom design.",
+        "links_title": "Pages",
+        "contact_title": "Contact",
+        "coming_soon": "soon"
+    },
+    "Testimonials": {
+        "title": "Capdana Stories",
+        "subtitle": "Hundreds of satisfied users, thousands of combinations. What's your story?",
+        "verified": "Verified Buyer",
+        "purchased": "PURCHASED PRODUCT",
+        "reviews": {
+            "rev-01": {
+                "text": "I bought the Crimson Phantom combo, the fabric quality and bandana texture are much more premium than I expected. Especially the packaging speed was surprising.",
+                "date": "2 days ago"
+            },
+            "rev-02": {
+                "text": "Making my own design was very enjoyable. The harmony between Shadow Walker front and neon bandana became legendary. Everyone on the street asks!",
+                "date": "1 week ago"
+            },
+            "rev-03": {
+                "text": "Minimal but assertive. The purple tone in the Royal Guard model is exactly what I wanted. I'm looking forward to the 1OF1 drops.",
+                "date": "3 days ago"
+            },
+            "rev-04": {
+                "text": "Capdana really knows what they're doing. It's a great success to produce such a quality product without spoiling the drill aesthetic.",
+                "date": "5 days ago"
+            },
+            "rev-05": {
+                "text": "The shipping speed and even the product box smell like prestige. I definitely recommend the Midnight Drift combo.",
+                "date": "10 days ago"
+            }
+        }
+    }
+}

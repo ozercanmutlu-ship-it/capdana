@@ -1,64 +1,66 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { product } from "@/lib/products";
-import { formatPrice } from "@/lib/format";
 import { ModelSelector } from "./ModelSelector";
 import { QuantitySelector } from "./QuantitySelector";
-import { useCart } from "./CartProvider";
+import { Button } from "./ui/Button";
+import { triggerFlyToCartFrom } from "@/lib/flyToCart";
 
-export const ProductPurchase = () => {
-  const { addItem } = useCart();
-  const [selectedModelId, setSelectedModelId] = useState<string | null>(null);
-  const [quantity, setQuantity] = useState(1);
-  const [message, setMessage] = useState("");
+type ProductPurchaseProps = {
+  selectedModelId: string | null;
+  onSelectModel: (modelId: string) => void;
+  quantity: number;
+  onQuantityChange: (quantity: number) => void;
+  onAddToCart: () => void;
+  message?: string;
+};
 
+export const ProductPurchase = ({
+  selectedModelId,
+  onSelectModel,
+  quantity,
+  onQuantityChange,
+  onAddToCart,
+  message,
+}: ProductPurchaseProps) => {
   const selectedModelLabel = useMemo(() => {
     if (!selectedModelId) return "";
     const model = product.models.find((item) => item.id === selectedModelId);
     return model?.label ?? "";
   }, [selectedModelId]);
 
-  const handleSelectModel = (modelId: string) => {
-    setSelectedModelId(modelId);
-    setMessage("");
-  };
-
-  const handleAddToCart = () => {
-    if (!selectedModelId) {
-      setMessage("Lütfen bir model seçin.");
-      return;
-    }
-    addItem({ productId: product.id, modelId: selectedModelId, quantity });
-    setMessage("Sepete eklendi.");
-  };
-
   return (
-    <div className="space-y-6 rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
+    <div className="space-y-6 rounded-2xl border border-text/10 bg-surface/95 p-6 shadow-[0_12px_40px_rgba(0,0,0,0.2)]">
       <div className="space-y-2">
-        <h2 className="text-2xl font-semibold">{product.name}</h2>
-        <p className="text-sm text-neutral-500">
+        <p className="text-xs uppercase tracking-[0.2em] text-muted">Bandana Drop</p>
+        <h2 className="text-2xl font-semibold text-text">{product.name}</h2>
+        <p className="text-sm text-muted">
           Bandana detaylı premium şapka. Seçili model:{" "}
-          <span className="text-neutral-900">
+          <span className="text-text">
             {selectedModelLabel || "Henüz seçilmedi"}
           </span>
         </p>
-        <p className="text-xl font-semibold text-neutral-900">{formatPrice(product.price)}</p>
+        <p className="text-sm text-muted">Fiyat sepette görünür.</p>
       </div>
-      <ModelSelector selectedModelId={selectedModelId} onSelect={handleSelectModel} />
+      <ModelSelector selectedModelId={selectedModelId} onSelect={onSelectModel} />
       <div className="flex items-center justify-between">
-        <QuantitySelector quantity={quantity} onChange={setQuantity} />
-        <span className="text-xs text-neutral-500">Tek fiyat: {formatPrice(product.price)}</span>
+        <QuantitySelector quantity={quantity} onChange={onQuantityChange} />
+        <span className="text-xs text-muted">Tek fiyat</span>
       </div>
-      <button
+      <Button
         type="button"
-        onClick={handleAddToCart}
+        onClick={(e) => {
+          triggerFlyToCartFrom(e.currentTarget);
+          onAddToCart();
+        }}
         disabled={!selectedModelId}
-        className="w-full rounded-full bg-neutral-900 px-6 py-3 text-sm font-medium text-white hover:bg-neutral-800 disabled:cursor-not-allowed disabled:bg-neutral-300"
+        fullWidth
+        className="press-cta"
       >
         Sepete Ekle
-      </button>
-      {message ? <p className="text-xs text-neutral-600">{message}</p> : null}
+      </Button>
+      {message ? <p className="text-xs text-muted">{message}</p> : null}
     </div>
   );
 };
