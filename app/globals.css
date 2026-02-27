@@ -192,7 +192,7 @@ img {
     position: relative;
     overflow: hidden;
     transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    box-shadow: 0 0 20px rgba(181, 54, 255, 0.4);
+    box-shadow: 0 0 20px var(--accent-glow);
   }
 
   .premium-glow-button::before {
@@ -208,7 +208,7 @@ img {
   }
 
   .premium-glow-button:hover {
-    box-shadow: 0 0 40px rgba(181, 54, 255, 0.6);
+    box-shadow: 0 0 40px var(--accent-glow);
     transform: translateY(-2px) scale(1.02);
   }
 
@@ -270,11 +270,11 @@ img {
     }
 
     50% {
-      box-shadow: 0 0 16px rgba(181, 54, 255, 0.35);
+      box-shadow: 0 0 16px var(--accent-glow);
     }
 
     100% {
-      box-shadow: 0 0 0 rgba(181, 54, 255, 0);
+      box-shadow: 0 0 0 transparent;
     }
   }
 
@@ -524,8 +524,8 @@ img {
   }
 
   .rarity-legendary {
-    border-color: rgba(181, 54, 255, 0.5);
-    background: linear-gradient(120deg, rgba(181, 54, 255, 0.15), rgba(255, 255, 255, 0.05));
+    border-color: var(--accent-color);
+    background: linear-gradient(120deg, var(--accent-glow), rgba(255, 255, 255, 0.05));
     background-size: 200% 200%;
     animation: shine 10s linear infinite;
     color: #f5f5f5;
@@ -540,7 +540,7 @@ img {
   }
 
   .toast-shell {
-    box-shadow: 0 0 18px rgba(181, 54, 255, 0.3), 0 12px 30px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0 18px var(--accent-glow), 0 12px 30px rgba(0, 0, 0, 0.35);
   }
 
   .toast-in {
@@ -560,8 +560,8 @@ img {
   }
 
   .cart-total-glow {
-    border: 1px solid rgba(181, 54, 255, 0.3);
-    box-shadow: 0 0 12px rgba(181, 54, 255, 0.2);
+    border: 1px solid var(--accent-color);
+    box-shadow: 0 0 12px var(--accent-glow);
   }
 
   .cart-total-pulse {
@@ -586,7 +586,7 @@ img {
     width: 140%;
     height: 140%;
     border-radius: 999px;
-    border: 1px solid rgba(181, 54, 255, 0.6);
+    border: 1px solid var(--accent-color);
     opacity: 0;
     pointer-events: none;
   }
@@ -604,7 +604,7 @@ img {
   }
 
   .press-cta:hover {
-    box-shadow: 0 0 18px rgba(181, 54, 255, 0.35);
+    box-shadow: 0 0 24px var(--accent-glow);
   }
 
   .press-cta:active {
