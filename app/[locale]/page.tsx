@@ -167,18 +167,41 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <Section className="relative">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-surface/5 to-transparent pointer-events-none" />
         <Container className="grid gap-12 lg:grid-cols-[1fr_1.1fr] items-center relative z-10">
-          <Card glow className="overflow-hidden p-0 rounded-[32px] border-text/10 shadow-xl group">
-            <div className="relative aspect-[3/4] bg-bg overflow-hidden">
-              <Image
-                src="/images/capdana-hero-green.jpg"
-                alt="Capdana Green Bandana Cap"
-                fill
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-[32px]" />
+          <div className="relative mx-auto w-[90%] max-w-md lg:w-full lg:max-w-none pb-8 lg:pb-0">
+            <div className="absolute -inset-4 rounded-[40px] bg-gradient-to-br from-surface to-bg/50 blur-xl opacity-50" />
+            <div className="group drill-poster relative rounded-[32px] border border-text/10 bg-surface/80 p-3 shadow-2xl backdrop-blur-sm transition-all duration-500 hover:shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] bg-bg border border-text/5">
+                <Image
+                  src="/images/capdana-hero-green.jpg"
+                  alt="Capdana Green Bandana Cap"
+                  fill
+                  sizes="(min-width: 1024px) 40vw, (min-width: 768px) 60vw, 90vw"
+                  className="h-full w-full object-cover transition duration-700 ease-out motion-safe:group-hover:scale-105 motion-safe:group-hover:rotate-1"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 opacity-60 transition-opacity duration-300 group-hover:opacity-40" />
+                <div className="absolute left-4 lg:left-5 top-4 lg:top-5 flex flex-col gap-2.5 z-10 w-full pr-4">
+                  <span className="drill-stamp rounded-full bg-black/80 backdrop-blur-md px-4 py-2 text-[10px] font-bold tracking-wider text-white shadow-lg border border-white/10 w-fit">
+                    FEATURED
+                  </span>
+                  <span className="w-fit rounded-full bg-white/10 backdrop-blur-md px-4 py-1.5 text-[11px] font-semibold text-white border border-white/20 shadow-sm">
+                    Green Paisley
+                  </span>
+                </div>
+                <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between z-10">
+                  <span className="rounded-full bg-black/60 backdrop-blur-md px-4 py-2 text-[10px] font-bold uppercase tracking-[0.25em] text-white/90 border border-white/10">
+                    Drop 02
+                  </span>
+                  <span className="font-mono text-xs font-medium text-white/60 tracking-wider">
+                    CAP-GRN-014
+                  </span>
+                </div>
+              </div>
+              <div className="mt-5 mb-2 px-2 flex items-center justify-between text-xs font-medium text-muted">
+                <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[var(--accent-color)] animate-pulse" /> Live in Vitrine</span>
+                <span>Premium System</span>
+              </div>
             </div>
-          </Card>
+          </div>
           <div className="flex flex-col justify-center space-y-5">
             <p className="text-xs uppercase tracking-[0.2em] text-muted">{t('builder_section.tag')}</p>
             <h2 className="text-3xl font-semibold text-text">{t('builder_section.title')}</h2>
