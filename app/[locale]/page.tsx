@@ -168,10 +168,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-surface/5 to-transparent pointer-events-none" />
         <Container className="grid gap-12 lg:grid-cols-[1fr_1.1fr] items-center relative z-10">
           <Card glow className="overflow-hidden p-0 rounded-[32px] border-text/10 shadow-xl group">
-            <div className="relative aspect-[4/3] bg-bg overflow-hidden">
+            <div className="relative aspect-[3/4] bg-bg overflow-hidden">
               <Image
-                src="/images/lifestyle-placeholder.svg"
-                alt="Capdana drop"
+                src="/images/capdana-hero-green.jpg"
+                alt="Capdana Green Bandana Cap"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
