@@ -123,8 +123,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 ))}
               </div>
             </div>
-            <div className="relative mx-auto w-[90%] max-w-md lg:w-full lg:max-w-none lg:pl-10 pb-8 lg:pb-0">
-              <div className="absolute -inset-4 rounded-[40px] bg-gradient-to-br from-surface to-bg/50 blur-xl opacity-50" />
+            <div className="relative mx-auto w-[90%] max-w-md lg:w-full lg:max-w-none lg:pl-10 pb-8 lg:pb-0 overflow-hidden">
+              <div className="absolute inset-0 rounded-[40px] bg-gradient-to-br from-surface to-bg/50 blur-xl opacity-50" />
               <div className="group drill-poster relative rounded-[32px] border border-text/10 bg-surface/80 p-3 shadow-2xl backdrop-blur-sm transition-all duration-500 hover:shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
                 <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] bg-bg border border-text/5">
                   <Image
@@ -137,8 +137,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                     className="h-full w-full object-cover transition duration-700 ease-out motion-safe:group-hover:scale-105 motion-safe:group-hover:rotate-1"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 opacity-60 transition-opacity duration-300 group-hover:opacity-40" />
-                  <div className="absolute left-4 lg:left-5 top-4 lg:top-5 flex flex-col gap-2.5 z-10 w-full pr-4">
-                    <span className="drill-stamp rounded-full bg-black/80 backdrop-blur-md px-4 py-2 text-[10px] font-bold tracking-wider text-white shadow-lg border border-white/10">
+                  <div className="absolute left-4 lg:left-5 top-4 lg:top-5 flex flex-col gap-2.5 z-10">
+                    <span className="drill-stamp w-fit rounded-full bg-black/80 backdrop-blur-md px-4 py-2 text-[10px] font-bold tracking-wider text-white shadow-lg border border-white/10">
                       FEATURED
                     </span>
                     <span className="w-fit rounded-full bg-white/10 backdrop-blur-md px-4 py-1.5 text-[11px] font-semibold text-white border border-white/20 shadow-sm">
@@ -167,20 +167,21 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <Section className="relative">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-surface/5 to-transparent pointer-events-none" />
         <Container className="grid gap-12 lg:grid-cols-[1fr_1.1fr] items-center relative z-10">
-          <div className="relative mx-auto w-[90%] max-w-md lg:w-full lg:max-w-none pb-8 lg:pb-0">
-            <div className="absolute -inset-4 rounded-[40px] bg-gradient-to-br from-surface to-bg/50 blur-xl opacity-50" />
+          <div className="relative mx-auto w-[90%] max-w-md lg:w-full lg:max-w-none pb-8 lg:pb-0 overflow-hidden">
+            <div className="absolute inset-0 rounded-[40px] bg-gradient-to-br from-surface to-bg/50 blur-xl opacity-50" />
             <div className="group drill-poster relative rounded-[32px] border border-text/10 bg-surface/80 p-3 shadow-2xl backdrop-blur-sm transition-all duration-500 hover:shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
               <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] bg-bg border border-text/5">
                 <Image
                   src="/images/capdana-hero-green.jpg"
                   alt="Capdana Green Bandana Cap"
-                  fill
+                  width={640}
+                  height={800}
                   sizes="(min-width: 1024px) 40vw, (min-width: 768px) 60vw, 90vw"
                   className="h-full w-full object-cover transition duration-700 ease-out motion-safe:group-hover:scale-105 motion-safe:group-hover:rotate-1"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 opacity-60 transition-opacity duration-300 group-hover:opacity-40" />
-                <div className="absolute left-4 lg:left-5 top-4 lg:top-5 flex flex-col gap-2.5 z-10 w-full pr-4">
-                  <span className="drill-stamp rounded-full bg-black/80 backdrop-blur-md px-4 py-2 text-[10px] font-bold tracking-wider text-white shadow-lg border border-white/10 w-fit">
+                <div className="absolute left-4 lg:left-5 top-4 lg:top-5 flex flex-col gap-2.5 z-10">
+                  <span className="drill-stamp w-fit rounded-full bg-black/80 backdrop-blur-md px-4 py-2 text-[10px] font-bold tracking-wider text-white shadow-lg border border-white/10">
                     FEATURED
                   </span>
                   <span className="w-fit rounded-full bg-white/10 backdrop-blur-md px-4 py-1.5 text-[11px] font-semibold text-white border border-white/20 shadow-sm">
@@ -223,7 +224,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               ))}
             </div>
             <ButtonLink href={`/${locale}/build`} variant="secondary" size="md">
-              {t('builder_section.tag')}
+              {t('builder_section.title')}
             </ButtonLink>
           </div>
         </Container>

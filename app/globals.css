@@ -3,8 +3,8 @@
 :root {
   --background: #0a0a0a;
   --foreground: #f5f5f5;
-  --accent-color: #b536ff;
-  --accent-glow: rgba(181, 54, 255, 0.25);
+  --accent-color: #e01a1a;
+  --accent-glow: rgba(224, 26, 26, 0.30);
 }
 
 @theme inline {
@@ -389,7 +389,7 @@ img {
     bottom: 10%;
     height: 45%;
     border-radius: 999px;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(181, 54, 255, 0.55) 50%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(224, 26, 26, 0.55) 50%, rgba(255, 255, 255, 0) 100%);
     background-size: 200% 100%;
     animation: shine 9s ease-in-out infinite;
     z-index: -1;
@@ -504,7 +504,7 @@ img {
     bottom: 10%;
     height: 45%;
     border-radius: 999px;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(181, 54, 255, 0.55) 50%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(224, 26, 26, 0.60) 50%, rgba(255, 255, 255, 0) 100%);
     background-size: 200% 100%;
     animation: shine 7s ease-in-out infinite;
     z-index: -1;
