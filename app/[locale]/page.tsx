@@ -203,13 +203,25 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               </div>
             </div>
           </div>
-          <div className="flex flex-col justify-center space-y-5">
-            <p className="text-xs uppercase tracking-[0.2em] text-muted">{t('builder_section.tag')}</p>
-            <h2 className="text-3xl font-semibold text-text">{t('builder_section.title')}</h2>
-            <p className="text-sm text-muted">
-              {t('builder_section.desc')}
+          <div className="flex flex-col justify-center space-y-6">
+            {/* Tag */}
+            <p className="flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-muted/80">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-color)] opacity-80 flex-shrink-0" />
+              {t('builder_section.tag')}
             </p>
-            <div className="flex gap-3 overflow-x-auto pb-2 text-xs text-text sm:flex-wrap">
+
+            {/* Heading */}
+            <div>
+              <h2 className="text-4xl font-bold tracking-tight text-text leading-[1.05] md:text-5xl">
+                {t('builder_section.title')}
+              </h2>
+              <p className="mt-4 text-sm text-muted leading-relaxed max-w-sm">
+                {t('builder_section.desc')}
+              </p>
+            </div>
+
+            {/* Feature pills — hero style */}
+            <div className="flex max-w-[90vw] gap-3 overflow-x-auto pb-1 text-[11px] font-semibold tracking-wide text-text/90 mix-blend-plus-lighter scrollbar-hide snap-x">
               {[
                 t('builder_section.f1'),
                 t('builder_section.f2'),
@@ -217,16 +229,32 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               ].map((item) => (
                 <span
                   key={item}
-                  className="whitespace-nowrap rounded-full border border-text/10 bg-surface/80 px-4 py-2"
+                  className="snap-center whitespace-nowrap flex items-center gap-1.5 rounded-full border border-text/5 bg-surface/60 px-4 py-2 shadow-sm backdrop-blur-md"
                 >
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-color)] opacity-70 flex-shrink-0" />
                   {item}
                 </span>
               ))}
             </div>
-            <ButtonLink href={`/${locale}/build`} variant="secondary" size="md">
-              {t('builder_section.title')}
-            </ButtonLink>
+
+            {/* CTA — glow wrapper + primary button, hero gibi */}
+            <div className="relative group/btn-wrapper w-full max-w-xs">
+              <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-[var(--accent-color)] to-[var(--accent-color)]/50 opacity-0 blur transition duration-500 group-hover/btn-wrapper:opacity-60" />
+              <ButtonLink
+                href={`/${locale}/build`}
+                variant="primary"
+                size="lg"
+                fullWidth
+                className="relative w-full"
+              >
+                <span>{t('builder_section.tag')}</span>
+              </ButtonLink>
+              <p className="mt-3 text-[10px] uppercase tracking-[0.2em] font-medium text-[var(--accent-color)]/90">
+                {t('builder_stats')}
+              </p>
+            </div>
           </div>
+
         </Container>
       </Section>
 
