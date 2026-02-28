@@ -3,13 +3,14 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 
 export default function RegisterPage() {
     const locale = useLocale();
+    const t = useTranslations('Auth');
     const router = useRouter();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -48,8 +49,8 @@ export default function RegisterPage() {
 
                 <div className="text-center space-y-2">
                     <p className="text-xs uppercase tracking-[0.3em] text-muted">Capdana</p>
-                    <h1 className="text-3xl font-bold text-text tracking-tight">Kayıt Ol</h1>
-                    <p className="text-sm text-muted">Topluluğa katıl, siparişlerini kolayca takip et.</p>
+                    <h1 className="text-3xl font-bold text-text tracking-tight">{t('register_title')}</h1>
+                    <p className="text-sm text-muted">{t('register_subtitle')}</p>
                 </div>
 
                 <Card className="p-8 space-y-6 shadow-xl border-text/10 bg-surface/80 backdrop-blur-md relative overflow-hidden">
@@ -57,33 +58,33 @@ export default function RegisterPage() {
 
                     <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
                         <div className="space-y-1.5">
-                            <label className="text-xs font-semibold uppercase tracking-widest text-muted" htmlFor="name">Ad Soyad</label>
+                            <label className="text-xs font-semibold uppercase tracking-widest text-muted" htmlFor="name">{t('name_label')}</label>
                             <input
                                 id="name"
                                 type="text"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 required
-                                placeholder="Adın Soyadın"
+                                placeholder={t('name_placeholder')}
                                 className="w-full rounded-xl border border-text/10 bg-bg px-4 py-3 text-sm text-text placeholder:text-muted/50 outline-none focus:border-[var(--accent-color)] focus:ring-2 focus:ring-[var(--accent-color)]/20 transition"
                             />
                         </div>
 
                         <div className="space-y-1.5">
-                            <label className="text-xs font-semibold uppercase tracking-widest text-muted" htmlFor="email">E-posta</label>
+                            <label className="text-xs font-semibold uppercase tracking-widest text-muted" htmlFor="email">{t('email_label')}</label>
                             <input
                                 id="email"
                                 type="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
-                                placeholder="ornek@email.com"
+                                placeholder={t('email_placeholder')}
                                 className="w-full rounded-xl border border-text/10 bg-bg px-4 py-3 text-sm text-text placeholder:text-muted/50 outline-none focus:border-[var(--accent-color)] focus:ring-2 focus:ring-[var(--accent-color)]/20 transition"
                             />
                         </div>
 
                         <div className="space-y-1.5">
-                            <label className="text-xs font-semibold uppercase tracking-widest text-muted" htmlFor="password">Şifre</label>
+                            <label className="text-xs font-semibold uppercase tracking-widest text-muted" htmlFor="password">{t('password_label')}</label>
                             <input
                                 id="password"
                                 type="password"
@@ -91,7 +92,7 @@ export default function RegisterPage() {
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
                                 minLength={6}
-                                placeholder="En az 6 karakter"
+                                placeholder={t('password_placeholder')}
                                 className="w-full rounded-xl border border-text/10 bg-bg px-4 py-3 text-sm text-text placeholder:text-muted/50 outline-none focus:border-[var(--accent-color)] focus:ring-2 focus:ring-[var(--accent-color)]/20 transition"
                             />
                         </div>
@@ -103,14 +104,14 @@ export default function RegisterPage() {
                         )}
 
                         <Button type="submit" fullWidth size="lg" disabled={loading} className="press-cta mt-2">
-                            {loading ? "Hesap oluşturuluyor..." : "Kayıt Ol"}
+                            {loading ? t('register_loading') : t('register_button')}
                         </Button>
                     </form>
 
                     <div className="relative z-10 text-center text-sm text-muted">
-                        Zaten hesabın var mı?{" "}
+                        {t('has_account')}{" "}
                         <Link href={`/${locale}/login`} className="text-[var(--accent-color)] font-semibold hover:underline">
-                            Giriş Yap
+                            {t('login_link')}
                         </Link>
                     </div>
                 </Card>

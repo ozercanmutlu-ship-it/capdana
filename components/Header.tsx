@@ -51,7 +51,7 @@ export const Header = () => {
                 href={`/${locale}${link.href}`}
                 className={cx(
                   "relative text-muted/80 transition duration-200 hover:text-text",
-                  "after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:rounded-full after:bg-red after:transition after:duration-200",
+                  "after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:rounded-full after:bg-[var(--accent-color)] after:transition after:duration-200",
                   "motion-safe:hover:after:scale-x-100",
                   isActive && "text-text after:scale-x-100"
                 )}
@@ -65,7 +65,7 @@ export const Header = () => {
           <ButtonLink href={`/${locale}/sepet`} variant="secondary" size="sm" data-cart-target="true">
             <ShoppingBag className="h-4 w-4" aria-hidden />
             {t('nav.cart')}
-            <span className="rounded-full bg-red px-2 py-0.5 text-[11px] font-semibold text-text">
+            <span className="rounded-full bg-[var(--accent-color)] px-2 py-0.5 text-[11px] font-semibold text-bg">
               {totalQuantity}
             </span>
           </ButtonLink>

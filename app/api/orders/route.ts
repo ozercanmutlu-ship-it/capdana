@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
             },
         });
 
-        return NextResponse.json({ orderId: order.id }, { status: 201 });
+        return NextResponse.json({ id: order.id, createdAt: order.createdAt }, { status: 201 });
     } catch (error) {
         console.error("Order creation error:", error);
         return NextResponse.json({ error: "Sipariş oluşturulamadı." }, { status: 500 });

@@ -243,7 +243,7 @@ const PaymentModalContent = ({
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (status !== "authenticated") {
-      show("Sipariş vermek için giriş yapmalısınız.");
+      show(t('login_required') || "Sipariş vermek için giriş yapmalısınız.");
       return;
     }
 
@@ -446,7 +446,7 @@ const PaymentModalContent = ({
                     <div className="mt-5 space-y-3 text-sm text-muted">
                       <div className="flex items-center justify-between gap-4">
                         <span>{t('total')}</span>
-                        <span className="text-2xl font-bold text-red tabular-nums price-reveal">
+                        <span className="text-2xl font-bold text-[var(--accent-color)] tabular-nums price-reveal">
                           {formatPrice(totalAmount, locale)}
                         </span>
                       </div>
@@ -472,7 +472,7 @@ const PaymentModalContent = ({
                     <div className="mt-5">
                       {status === "unauthenticated" ? (
                         <div className="rounded-xl border border-yellow-500/20 bg-yellow-500/10 p-4 text-center">
-                          <p className="text-sm font-semibold text-yellow-500 mb-3">Sipariş verebilmek için giriş yapmalısınız.</p>
+                          <p className="text-sm font-semibold text-yellow-500 mb-3">{t('login_required') || "Sipariş verebilmek için giriş yapmalısınız."}</p>
                           <Button
                             type="button"
                             fullWidth
@@ -481,7 +481,7 @@ const PaymentModalContent = ({
                               router.push(`/${locale}/login`);
                             }}
                           >
-                            Giriş Yap / Kayıt Ol
+                            {t('login_register') || "Giriş Yap / Kayıt Ol"}
                           </Button>
                         </div>
                       ) : (
@@ -611,7 +611,7 @@ const PaymentModalContent = ({
                       </div>
                       <div>
                         <p className="text-xs text-muted">{t('product_total')}</p>
-                        <p className="font-bold text-red tabular-nums price-reveal">
+                        <p className="font-bold text-[var(--accent-color)] tabular-nums price-reveal">
                           {formatPrice(totalAmount, locale)}
                         </p>
                       </div>
@@ -625,7 +625,7 @@ const PaymentModalContent = ({
                         {t('back')}
                       </Button>
                       <Button type="submit" className="press-cta" disabled={isSubmitting}>
-                        {isSubmitting ? "Sipariş Oluşturuluyor..." : t('create_order_button')}
+                        {isSubmitting ? (t('creating_order') || "Sipariş Oluşturuluyor...") : t('create_order_button')}
                       </Button>
                     </div>
                   </div>
@@ -643,7 +643,7 @@ const PaymentModalContent = ({
                   </p>
                   <p className="mt-1 text-sm text-muted">
                     {t('total_row')}{" "}
-                    <span className="font-bold text-red tabular-nums price-reveal">
+                    <span className="font-bold text-[var(--accent-color)] tabular-nums price-reveal">
                       {formatPrice(submittedOrder.totalAmount, locale)}
                     </span>
                   </p>

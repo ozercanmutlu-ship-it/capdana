@@ -144,7 +144,10 @@
         "product_model": "Model",
         "product_quantity": "Adet",
         "product_total": "Tutar",
-        "unit": "adet"
+        "unit": "adet",
+        "login_required": "Sipariş vermek için giriş yapmalısınız.",
+        "login_register": "Giriş Yap / Kayıt Ol",
+        "creating_order": "Sipariş Oluşturuluyor..."
     },
     "Order": {
         "title": "Sipariş Onayı",
@@ -165,6 +168,28 @@
         "links_title": "Sayfalar",
         "contact_title": "İletişim",
         "coming_soon": "yakında"
+    },
+    "Auth": {
+        "login_title": "Giriş Yap",
+        "login_subtitle": "Siparişlerini takip et, özel fırsatları yakala.",
+        "email_label": "E-posta",
+        "email_placeholder": "ornek@email.com",
+        "password_label": "Şifre",
+        "password_placeholder": "••••••••",
+        "login_button": "Giriş Yap",
+        "login_loading": "Giriş yapılıyor...",
+        "no_account": "Hesabın yok mu?",
+        "register_link": "Kayıt Ol",
+        "register_title": "Kayıt Ol",
+        "register_subtitle": "Capdana ailesine katıl, siparişlerini takip et.",
+        "name_label": "Ad Soyad",
+        "name_placeholder": "Ad Soyad",
+        "register_button": "Kayıt Ol",
+        "register_loading": "Kayıt yapılıyor...",
+        "has_account": "Zaten hesabın var mı?",
+        "login_link": "Giriş Yap",
+        "login_required": "Sipariş vermek için giriş yapmalısınız.",
+        "login_register": "Giriş Yap / Kayıt Ol"
     },
     "Testimonials": {
         "title": "Capdana Hikayeleri",

@@ -144,7 +144,10 @@
         "product_model": "Model",
         "product_quantity": "Quantity",
         "product_total": "Total Amount",
-        "unit": "qty"
+        "unit": "qty",
+        "login_required": "You must sign in to place an order.",
+        "login_register": "Sign In / Sign Up",
+        "creating_order": "Creating Order..."
     },
     "Order": {
         "title": "Order Confirmation",
@@ -165,6 +168,28 @@
         "links_title": "Pages",
         "contact_title": "Contact",
         "coming_soon": "soon"
+    },
+    "Auth": {
+        "login_title": "Sign In",
+        "login_subtitle": "Track your orders, catch exclusive deals.",
+        "email_label": "Email",
+        "email_placeholder": "example@email.com",
+        "password_label": "Password",
+        "password_placeholder": "••••••••",
+        "login_button": "Sign In",
+        "login_loading": "Signing in...",
+        "no_account": "Don't have an account?",
+        "register_link": "Sign Up",
+        "register_title": "Sign Up",
+        "register_subtitle": "Join the Capdana family, track your orders.",
+        "name_label": "Full Name",
+        "name_placeholder": "Full Name",
+        "register_button": "Sign Up",
+        "register_loading": "Signing up...",
+        "has_account": "Already have an account?",
+        "login_link": "Sign In",
+        "login_required": "You must sign in to place an order.",
+        "login_register": "Sign In / Sign Up"
     },
     "Testimonials": {
         "title": "Capdana Stories",
