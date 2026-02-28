@@ -56,8 +56,8 @@ export const CapdanaBuilder = ({ customPrice, fronts, bandanas }: { customPrice:
   useEffect(() => {
     if (typeof document === "undefined") return;
     const root = document.documentElement;
-    const originalColor = "#FF4D4D";
-    const originalGlow = "rgba(255, 77, 77, 0.22)";
+    const originalColor = "#b536ff";
+    const originalGlow = "rgba(181, 54, 255, 0.15)";
 
     if (bandana?.color) {
       root.style.setProperty("--accent-color", bandana.color);

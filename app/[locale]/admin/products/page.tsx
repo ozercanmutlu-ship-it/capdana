@@ -8,6 +8,7 @@ import { Container } from "@/components/ui/Container";
 import { useToast } from "@/components/ToastProvider";
 import { ImageWithFallback } from "@/components/ImageWithFallback";
 import { RarityBadge } from "@/components/ui/Badge";
+import { cx } from "@/lib/cn";
 import type { Rarity } from "@/lib/rarity";
 
 type Front = { id: string; name: string; slug: string; image: string };
@@ -18,6 +19,8 @@ export default function ProductsPage() {
     const [fronts, setFronts] = useState<Front[]>([]);
     const [bandanas, setBandanas] = useState<Bandana[]>([]);
     const [tab, setTab] = useState<"FRONTS" | "BANDANAS">("FRONTS");
+    const [searchQuery, setSearchQuery] = useState("");
+    const [rarityFilter, setRarityFilter] = useState("ALL");
     const { show } = useToast();
 
     // Edit/Add State
@@ -95,6 +98,18 @@ export default function ProductsPage() {
         setIsAdding(true);
     };
 
+    const filteredFronts = fronts.filter(f =>
+        f.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        f.id.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    const filteredBandanas = bandanas.filter(b => {
+        const matchesSearch = b.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            b.id.toLowerCase().includes(searchQuery.toLowerCase());
+        const matchesRarity = rarityFilter === "ALL" || b.rarity === rarityFilter;
+        return matchesSearch && matchesRarity;
+    });
+
     if (loading && fronts.length === 0) {
         return (
             <div className="py-20 flex justify-center">
@@ -106,80 +121,122 @@ export default function ProductsPage() {
     return (
         <Section className="py-10">
             <Container className="space-y-8">
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                    <div>
-                        <h1 className="text-3xl font-bold text-text">Ekipman Yönetimi</h1>
-                        <p className="text-sm text-muted mt-1">Ön panelleri ve bandanaları düzenleyin.</p>
+                <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6">
+                    <div className="space-y-1">
+                        <h1 className="text-3xl font-bold text-text tracking-tight text-balance">Ekipman Yönetimi</h1>
+                        <p className="text-sm text-muted">Ön panelleri ve bandanaları yönetin.</p>
                     </div>
-                    <Button onClick={openAddModal} className="press-cta shadow-md">
-                        + Yeni {tab === "FRONTS" ? "Ön Panel" : "Bandana"} Ekle
-                    </Button>
+
+                    <div className="flex flex-wrap items-center gap-3 w-full lg:w-auto">
+                        <div className="relative flex-1 lg:min-w-[280px]">
+                            <input
+                                type="text"
+                                placeholder="Ürün ismi veya ID..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                className="w-full bg-surface/50 border border-text/10 rounded-full px-5 py-2.5 text-sm text-text outline-none focus:border-[var(--accent-color)] transition-all"
+                            />
+                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted/30">🔍</span>
+                        </div>
+                        <Button onClick={openAddModal} className="press-cta shadow-md whitespace-nowrap">
+                            + Yeni Ekle
+                        </Button>
+                    </div>
                 </div>
 
-                <div className="flex rounded-lg bg-surface/40 p-1 border border-text/10 inline-flex">
-                    <button
-                        onClick={() => setTab("FRONTS")}
-                        className={`px-6 py-2 rounded-md text-sm font-semibold transition ${tab === "FRONTS" ? "bg-bg text-text shadow" : "text-muted hover:text-text"}`}
-                    >
-                        Ön Paneller ({fronts.length})
-                    </button>
-                    <button
-                        onClick={() => setTab("BANDANAS")}
-                        className={`px-6 py-2 rounded-md text-sm font-semibold transition ${tab === "BANDANAS" ? "bg-bg text-text shadow" : "text-muted hover:text-text"}`}
-                    >
-                        Bandanalar ({bandanas.length})
-                    </button>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div className="flex rounded-lg bg-surface/40 p-1 border border-text/10 w-fit">
+                        <button
+                            onClick={() => setTab("FRONTS")}
+                            className={`px-6 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition ${tab === "FRONTS" ? "bg-bg text-text shadow-sm" : "text-muted hover:text-text"}`}
+                        >
+                            Ön Paneller ({filteredFronts.length})
+                        </button>
+                        <button
+                            onClick={() => setTab("BANDANAS")}
+                            className={`px-6 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition ${tab === "BANDANAS" ? "bg-bg text-text shadow-sm" : "text-muted hover:text-text"}`}
+                        >
+                            Bandanalar ({filteredBandanas.length})
+                        </button>
+                    </div>
+
+                    {tab === "BANDANAS" && (
+                        <div className="flex gap-2 items-center overflow-x-auto no-scrollbar">
+                            {["ALL", "COMMON", "RARE", "LEGENDARY", "1OF1"].map(r => (
+                                <button
+                                    key={r}
+                                    onClick={() => setRarityFilter(r)}
+                                    className={cx(
+                                        "px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border transition",
+                                        rarityFilter === r
+                                            ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10 text-[var(--accent-color)]"
+                                            : "border-text/5 text-muted hover:border-text/20 bg-surface/30"
+                                    )}
+                                >
+                                    {r === "ALL" ? "TÜMÜ" : r}
+                                </button>
+                            ))}
+                        </div>
+                    )}
                 </div>
 
                 {tab === "FRONTS" && (
                     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                        {fronts.map(f => (
-                            <Card key={f.id} className="p-4 border-text/10 bg-surface/50 space-y-3 group flex flex-col justify-between">
-                                <div>
-                                    <div className="aspect-[4/3] rounded-lg bg-bg overflow-hidden relative mb-3 border border-text/5">
-                                        <ImageWithFallback src={f.image} alt={f.name} className="object-cover" sizes="25vw" />
+                        {filteredFronts.length === 0 ? (
+                            <div className="col-span-full py-20 text-center text-muted border border-dashed border-text/10 rounded-2xl">Arama sonucu bulunamadı.</div>
+                        ) : (
+                            filteredFronts.map(f => (
+                                <Card key={f.id} className="p-4 border-text/10 bg-surface/50 space-y-3 group flex flex-col justify-between hover:border-text/20 transition-all">
+                                    <div>
+                                        <div className="aspect-[4/3] rounded-lg bg-bg overflow-hidden relative mb-3 border border-text/5">
+                                            <ImageWithFallback src={f.image} alt={f.name} className="object-cover" sizes="25vw" />
+                                        </div>
+                                        <p className="font-semibold text-text text-sm">{f.name}</p>
+                                        <p className="text-xs font-mono text-muted">{f.id} • {f.slug}</p>
                                     </div>
-                                    <p className="font-semibold text-text text-sm">{f.name}</p>
-                                    <p className="text-xs font-mono text-muted">{f.id} • {f.slug}</p>
-                                </div>
-                                <div className="grid grid-cols-2 gap-2 mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <Button size="sm" variant="secondary" onClick={() => { setEditingItem(f); setIsAdding(false); }}>Düzenle</Button>
-                                    <Button size="sm" variant="ghost" className="text-red-500 hover:bg-red-500/10" onClick={() => handleDelete(f.id)}>Sil</Button>
-                                </div>
-                            </Card>
-                        ))}
+                                    <div className="grid grid-cols-2 gap-2 mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <Button size="sm" variant="secondary" onClick={() => { setEditingItem(f); setIsAdding(false); }}>Düzenle</Button>
+                                        <Button size="sm" variant="ghost" className="text-red-500 hover:bg-red-500/10" onClick={() => handleDelete(f.id)}>Sil</Button>
+                                    </div>
+                                </Card>
+                            ))
+                        )}
                     </div>
                 )}
 
                 {tab === "BANDANAS" && (
                     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                        {bandanas.map(b => (
-                            <Card key={b.id} className="p-4 border-text/10 bg-surface/50 space-y-3 group flex flex-col justify-between">
-                                <div>
-                                    <div className="aspect-square rounded-lg bg-bg overflow-hidden relative mb-3 border border-text/5" style={{ borderColor: b.color }}>
-                                        <div className="absolute top-2 left-2 z-10"><RarityBadge rarity={b.rarity} className="scale-75 origin-top-left" /></div>
-                                        <ImageWithFallback src={b.image} alt={b.name} className="object-cover" sizes="25vw" />
+                        {filteredBandanas.length === 0 ? (
+                            <div className="col-span-full py-20 text-center text-muted border border-dashed border-text/10 rounded-2xl">Arama sonucu bulunamadı.</div>
+                        ) : (
+                            filteredBandanas.map(b => (
+                                <Card key={b.id} className="p-4 border-text/10 bg-surface/50 space-y-3 group flex flex-col justify-between hover:border-text/20 transition-all">
+                                    <div>
+                                        <div className="aspect-square rounded-lg bg-bg overflow-hidden relative mb-3 border border-text/5" style={{ borderColor: b.color }}>
+                                            <div className="absolute top-2 left-2 z-10"><RarityBadge rarity={b.rarity} className="scale-75 origin-top-left" /></div>
+                                            <ImageWithFallback src={b.image} alt={b.name} className="object-cover" sizes="25vw" />
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <div className="w-3 h-3 rounded-full border border-white/20" style={{ backgroundColor: b.color }} />
+                                            <p className="font-semibold text-text text-sm">{b.name}</p>
+                                        </div>
+                                        <p className="text-xs font-mono text-muted">{b.id} • {b.slug}</p>
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                        <div className="w-3 h-3 rounded-full border border-white/20" style={{ backgroundColor: b.color }} />
-                                        <p className="font-semibold text-text text-sm">{b.name}</p>
+                                    <div className="grid grid-cols-2 gap-2 mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <Button size="sm" variant="secondary" onClick={() => { setEditingItem(b); setIsAdding(false); }}>Düzenle</Button>
+                                        <Button size="sm" variant="ghost" className="text-red-500 hover:bg-red-500/10" onClick={() => handleDelete(b.id)}>Sil</Button>
                                     </div>
-                                    <p className="text-xs font-mono text-muted">{b.id} • {b.slug}</p>
-                                </div>
-                                <div className="grid grid-cols-2 gap-2 mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <Button size="sm" variant="secondary" onClick={() => { setEditingItem(b); setIsAdding(false); }}>Düzenle</Button>
-                                    <Button size="sm" variant="ghost" className="text-red-500 hover:bg-red-500/10" onClick={() => handleDelete(b.id)}>Sil</Button>
-                                </div>
-                            </Card>
-                        ))}
+                                </Card>
+                            ))
+                        )}
                     </div>
                 )}
             </Container>
 
             {/* Modal for editing / adding */}
             {editingItem && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-                    <Card className="w-full max-w-lg p-6 bg-bg border-text/10 shadow-2xl space-y-6">
+                <div className="fixed inset-0 z-50 flex items-start justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto py-8 lg:py-12">
+                    <Card className="w-full max-w-lg p-6 bg-bg border-text/10 shadow-2xl space-y-6 my-auto">
                         <div className="flex justify-between items-center border-b border-text/10 pb-4">
                             <h2 className="text-xl font-bold">{isAdding ? "Yeni Ekle" : "Düzenle"} [{tab === "FRONTS" ? "Ön Panel" : "Bandana"}]</h2>
                             <button onClick={() => setEditingItem(null)} className="text-muted hover:text-text">✕</button>

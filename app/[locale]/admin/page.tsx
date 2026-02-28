@@ -36,6 +36,7 @@ export default function AdminPage() {
     const [loading, setLoading] = useState(true);
     const [updating, setUpdating] = useState<string | null>(null);
     const [filter, setFilter] = useState("ALL");
+    const [searchQuery, setSearchQuery] = useState("");
 
     const fetchOrders = useCallback(() => {
         setLoading(true);
@@ -62,7 +63,14 @@ export default function AdminPage() {
         fetchOrders();
     };
 
-    const filtered = filter === "ALL" ? orders : orders.filter(o => o.status === filter);
+    const filtered = (filter === "ALL" ? orders : orders.filter(o => o.status === filter))
+        .filter(o => {
+            const search = searchQuery.toLowerCase();
+            const shipping = JSON.parse(o.shipping || "{}");
+            return o.id.toLowerCase().includes(search) ||
+                (shipping.fullName || "").toLowerCase().includes(search) ||
+                (shipping.email || "").toLowerCase().includes(search);
+        });
 
     const stats = {
         total: orders.length,
@@ -70,41 +78,56 @@ export default function AdminPage() {
         processing: orders.filter(o => o.status === "PROCESSING").length,
         shipped: orders.filter(o => o.status === "SHIPPED").length,
         revenue: orders.filter(o => o.status !== "CANCELLED").reduce((acc, o) => acc + o.totalAmount, 0),
+        avgOrder: orders.length > 0 ? orders.reduce((acc, o) => acc + o.totalAmount, 0) / orders.length : 0,
     };
 
     return (
         <Section className="py-10">
             <Container className="space-y-8">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {/* Stats Grid */}
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                     {[
+                        { label: "Toplam Ciro", value: `₺${stats.revenue.toLocaleString()}`, color: "text-[var(--accent-color)]" },
                         { label: "Toplam Sipariş", value: stats.total, color: "text-text" },
-                        { label: "Beklemede", value: stats.pending, color: "text-yellow-400" },
-                        { label: "Hazırlanıyor", value: stats.processing, color: "text-blue-400" },
-                        { label: "Toplam Ciro", value: `₺${stats.revenue.toFixed(0)}`, color: "text-[var(--accent-color)]" },
+                        { label: "Ort. Sepet", value: `₺${stats.avgOrder.toFixed(0)}`, color: "text-blue-400" },
+                        { label: "Bekleyen", value: stats.pending, color: "text-yellow-400" },
                     ].map(stat => (
-                        <Card key={stat.label} className="p-5 bg-surface/50 border-text/10 space-y-1">
-                            <p className="text-xs text-muted uppercase tracking-wider">{stat.label}</p>
-                            <p className={cx("text-2xl font-bold", stat.color)}>{stat.value}</p>
+                        <Card key={stat.label} className="p-5 bg-surface/50 border-text/10 space-y-1 hover:border-text/20 transition-all">
+                            <p className="text-[10px] text-muted uppercase tracking-[0.2em] font-bold">{stat.label}</p>
+                            <p className={cx("text-2xl font-bold tracking-tight", stat.color)}>{stat.value}</p>
                         </Card>
                     ))}
                 </div>
 
-                {/* Filter */}
-                <div className="flex gap-2 overflow-x-auto pb-1">
-                    {["ALL", ...STATUS_OPTIONS.map(s => s.value)].map(val => (
-                        <button
-                            key={val}
-                            onClick={() => setFilter(val)}
-                            className={cx(
-                                "whitespace-nowrap rounded-full border px-4 py-1.5 text-xs font-semibold transition",
-                                filter === val
-                                    ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10 text-[var(--accent-color)]"
-                                    : "border-text/10 text-muted hover:border-text/30 bg-surface/40"
-                            )}
-                        >
-                            {val === "ALL" ? "Tümü" : STATUS_OPTIONS.find(s => s.value === val)?.label ?? val}
-                        </button>
-                    ))}
+                {/* Dashboard Controls */}
+                <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+                    <div className="flex gap-2 overflow-x-auto pb-1 w-full md:w-auto no-scrollbar">
+                        {["ALL", ...STATUS_OPTIONS.map(s => s.value)].map(val => (
+                            <button
+                                key={val}
+                                onClick={() => setFilter(val)}
+                                className={cx(
+                                    "whitespace-nowrap rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wider transition",
+                                    filter === val
+                                        ? "border-[var(--accent-color)] bg-[var(--accent-color)]/10 text-[var(--accent-color)]"
+                                        : "border-text/5 text-muted hover:border-text/20 bg-surface/30"
+                                )}
+                            >
+                                {val === "ALL" ? "Tümü" : STATUS_OPTIONS.find(s => s.value === val)?.label ?? val}
+                            </button>
+                        ))}
+                    </div>
+
+                    <div className="relative w-full md:max-w-xs">
+                        <input
+                            type="text"
+                            placeholder="Sipariş, isim veya e-posta..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="w-full bg-surface/50 border border-text/10 rounded-full px-5 py-2.5 text-sm text-text outline-none focus:border-[var(--accent-color)] transition-all placeholder:text-muted/50"
+                        />
+                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted/30">🔍</span>
+                    </div>
                 </div>
 
                 {/* Orders Table */}
