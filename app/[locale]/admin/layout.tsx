@@ -2,7 +2,7 @@
 
 import { useSession, signOut } from "next-auth/react";
 import { useRouter, useParams, usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { cx } from "@/lib/cn";
 import { Button } from "@/components/ui/Button";
@@ -13,6 +13,23 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     const params = useParams();
     const pathname = usePathname();
     const locale = params.locale as string;
+    const [pendingCount, setPendingCount] = useState(0);
+
+    // Bekleyen community onaylarını periyodik olarak çek
+    useEffect(() => {
+        const fetchPending = async () => {
+            try {
+                const res = await fetch("/api/admin/community");
+                if (res.ok) {
+                    const data = await res.json();
+                    setPendingCount(data.pendingCount ?? 0);
+                }
+            } catch { }
+        };
+        fetchPending();
+        const interval = setInterval(fetchPending, 30000);
+        return () => clearInterval(interval);
+    }, []);
 
     useEffect(() => {
         if (status === "unauthenticated") { router.push(`/${locale}/login`); return; }
@@ -30,10 +47,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     }
 
     const navItems = [
-        { href: `/${locale}/admin`, label: "Siparişler" },
-        { href: `/${locale}/admin/settings`, label: "Ayarlar" },
-        { href: `/${locale}/admin/products`, label: "Ekipmanlar" },
-        { href: `/${locale}/admin/ready-capdanas`, label: "Hazır Kombinler" },
+        { href: `/${locale}/admin`, label: "Siparişler", badge: null },
+        { href: `/${locale}/admin/settings`, label: "Ayarlar", badge: null },
+        { href: `/${locale}/admin/products`, label: "Ekipmanlar", badge: null },
+        { href: `/${locale}/admin/ready-capdanas`, label: "Hazır Kombinler", badge: null },
+        { href: `/${locale}/admin/community`, label: "Kombinler", badge: pendingCount > 0 ? pendingCount : null },
     ];
 
     return (
@@ -49,13 +67,18 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                                 {navItems.map(item => (
                                     <Link key={item.href} href={item.href}
                                         className={cx(
-                                            "px-4 py-2 rounded-xl text-sm font-semibold transition",
+                                            "px-4 py-2 rounded-xl text-sm font-semibold transition flex items-center gap-1.5",
                                             pathname === item.href
                                                 ? "bg-[var(--accent-color)]/10 text-[var(--accent-color)]"
                                                 : "text-muted hover:text-text hover:bg-surface/50"
                                         )}
                                     >
                                         {item.label}
+                                        {item.badge && (
+                                            <span className="rounded-full bg-[var(--accent-color)] px-1.5 py-0.5 text-[9px] font-bold text-bg leading-none">
+                                                {item.badge}
+                                            </span>
+                                        )}
                                     </Link>
                                 ))}
                             </nav>

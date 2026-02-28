@@ -20,6 +20,7 @@ model User {
   updatedAt     DateTime  @updatedAt
 
   orders Order[]
+  communityPosts CommunityPost[]
 }
 
 model Order {
@@ -37,6 +38,16 @@ model Order {
   updatedAt DateTime @updatedAt
 }
 
+model CommunityPost {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  imageUrl  String
+  caption   String?
+  combo     String?
+  approved  Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
 model SiteSettings {
   id          String   @id @default("default")
   readyPrice  Float    @default(333)

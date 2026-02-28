@@ -7,6 +7,8 @@ import { createTranslator } from 'next-intl';
 import { Section } from "@/components/ui/Section";
 import { siteConfig } from "@/lib/site";
 import { Testimonials } from "@/components/Testimonials";
+import { CommunityGallery } from "@/components/CommunityGallery";
+import { prisma } from "@/lib/prisma";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -35,6 +37,19 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const t = createTranslator({ locale, messages, namespace: 'Hero' });
   const tc = createTranslator({ locale, messages, namespace: 'Common' });
   const tt = createTranslator({ locale, messages, namespace: 'Testimonials' });
+  const tcom = createTranslator({ locale, messages, namespace: 'Community' });
+
+  // Onaylı community postları (son 6)
+  const communityPosts = await prisma.communityPost.findMany({
+    where: { approved: true },
+    orderBy: { createdAt: "desc" },
+    take: 6,
+    include: { user: { select: { name: true } } },
+  });
+  const serializedPosts = communityPosts.map((p) => ({
+    ...p,
+    createdAt: p.createdAt.toISOString(),
+  }));
 
   const webSiteJsonLd = {
     "@context": "https://schema.org",
@@ -291,6 +306,29 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               </Card>
             ))}
           </div>
+        </Container>
+      </Section>
+
+      {/* Sizin Kombinleriniz */}
+      <Section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-surface/5 to-transparent pointer-events-none" />
+        <Container className="relative z-10">
+          <div className="mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <p className="text-xs uppercase tracking-[0.25em] text-[var(--accent-color)]">Community</p>
+              <h2 className="mt-2 text-3xl font-bold tracking-tight text-text md:text-4xl">{tcom('title')}</h2>
+              <p className="mt-3 max-w-sm text-sm text-muted">{tcom('subtitle')}</p>
+            </div>
+            <ButtonLink
+              href={`/${locale}/sizin-kombinleriniz`}
+              variant="secondary"
+              size="sm"
+              className="shrink-0"
+            >
+              {tcom('view_all')} →
+            </ButtonLink>
+          </div>
+          <CommunityGallery initialPosts={serializedPosts} limit={6} />
         </Container>
       </Section>
 

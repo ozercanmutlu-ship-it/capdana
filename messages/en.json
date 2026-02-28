@@ -192,7 +192,7 @@
         "login_register": "Sign In / Sign Up"
     },
     "Testimonials": {
-        "title": "Capdana Stories",
+        "title": "Customer Experiences",
         "subtitle": "Hundreds of satisfied users, thousands of combinations. What's your story?",
         "verified": "Verified Buyer",
         "purchased": "PURCHASED PRODUCT",
@@ -218,5 +218,27 @@
                 "date": "10 days ago"
             }
         }
+    },
+    "Community": {
+        "title": "Your Combinations",
+        "subtitle": "The Capdana family is growing. Share your combo, inspire others.",
+        "submit_btn": "Share Your Combo",
+        "login_required": "You need to sign in to share.",
+        "order_required": "You need to have placed an order to share.",
+        "pending_title": "Your photo is pending approval!",
+        "pending_desc": "It will appear in the gallery after admin approval.",
+        "empty": "No submissions yet. Be the first!",
+        "view_all": "View All",
+        "modal_tag": "Capdana Community",
+        "modal_title": "Share Your Combo",
+        "drop_label": "Select or drag & drop a photo",
+        "drop_hint": "JPG, PNG, WEBP — max 10MB",
+        "combo_label": "My Combo (optional)",
+        "caption_label": "Comment (optional)",
+        "caption_placeholder": "Why I love this combo...",
+        "image_required": "Please select a photo.",
+        "upload_error": "Upload failed. Please try again.",
+        "uploading": "Uploading...",
+        "approval_note": "Your photo will be published after admin approval."
     }
 }

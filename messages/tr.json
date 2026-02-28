@@ -192,7 +192,7 @@
         "login_register": "Giriş Yap / Kayıt Ol"
     },
     "Testimonials": {
-        "title": "Capdana Hikayeleri",
+        "title": "Müşteri Deneyimleri",
         "subtitle": "Yüzlerce memnun kullanıcı, binlerce farklı kombin. Senin hikayen hangisi?",
         "verified": "Doğrulanmış Alıcı",
         "purchased": "SATIN ALINAN ÜRÜN",
@@ -218,5 +218,27 @@
                 "date": "10 gün önce"
             }
         }
+    },
+    "Community": {
+        "title": "Sizin Kombinleriniz",
+        "subtitle": "Capdana ailesi büyüyor. Kombinini paylaş, ilham ver.",
+        "submit_btn": "Kombin Paylaş",
+        "login_required": "Paylaşmak için giriş yapmalısın.",
+        "order_required": "Paylaşmak için sipariş vermiş olman gerekiyor.",
+        "pending_title": "Fotoğrafın onay bekliyor!",
+        "pending_desc": "Admin onayladıktan sonra galeride yayınlanacak.",
+        "empty": "Henüz paylaşım yok. İlk sen ol!",
+        "view_all": "Tümünü Gör",
+        "modal_tag": "Capdana Community",
+        "modal_title": "Kombinini Paylaş",
+        "drop_label": "Fotoğraf seç veya sürükle bırak",
+        "drop_hint": "JPG, PNG, WEBP — max 10MB",
+        "combo_label": "Kombinim (opsiyonel)",
+        "caption_label": "Yorum (opsiyonel)",
+        "caption_placeholder": "Bu kombini neden seviyorum...",
+        "image_required": "Lütfen bir fotoğraf seç.",
+        "upload_error": "Yükleme başarısız. Tekrar dene.",
+        "uploading": "Yükleniyor...",
+        "approval_note": "Fotoğrafın admin onayından sonra yayınlanır."
     }
 }
