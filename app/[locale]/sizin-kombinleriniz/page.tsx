@@ -8,7 +8,7 @@ import { siteConfig } from "@/lib/site";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
     const { locale } = await params;
-    const messages = (await import(`../../../../messages/${locale}.json`)).default;
+    const messages = (await import(`../../../messages/${locale}.json`)).default;
     const t = createTranslator({ locale, messages, namespace: "Community" });
     return {
         title: t("title"),
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function CommunityPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
-    const messages = (await import(`../../../../messages/${locale}.json`)).default;
+    const messages = (await import(`../../../messages/${locale}.json`)).default;
     const t = createTranslator({ locale, messages, namespace: "Community" });
 
     const posts = await prisma.communityPost.findMany({
