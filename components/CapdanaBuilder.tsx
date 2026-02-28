@@ -53,29 +53,62 @@ export const CapdanaBuilder = ({ customPrice, fronts, bandanas }: { customPrice:
 
   const bandana = bandanaId ? bandanaById.get(bandanaId) : null;
 
+  // Renk kalıcılığı: seçilen bandana rengi tüm sitede geçerli kalır.
+  // Sayfa ilk açılışında localStorage'dan son rengi yükle.
   useEffect(() => {
     if (typeof document === "undefined") return;
     const root = document.documentElement;
-    const originalColor = "#b536ff";
-    const originalGlow = "rgba(181, 54, 255, 0.15)";
+    const defaultColor = "#e01a1a";
+    const defaultGlow = "rgba(224, 26, 26, 0.30)";
+
+    const saved = typeof localStorage !== "undefined"
+      ? localStorage.getItem("capdana-accent-color")
+      : null;
+
+    if (saved) {
+      const hex = saved;
+      const r = parseInt(hex.slice(1, 3), 16);
+      const g = parseInt(hex.slice(3, 5), 16);
+      const b = parseInt(hex.slice(5, 7), 16);
+      root.style.setProperty("--accent-color", hex);
+      root.style.setProperty("--accent-glow", `rgba(${r}, ${g}, ${b}, 0.30)`);
+    } else {
+      root.style.setProperty("--accent-color", defaultColor);
+      root.style.setProperty("--accent-glow", defaultGlow);
+    }
+
+    // Cleanup: sayfa değişince mevcut rengi koru (sıfırlama YOK)
+    return () => { /* renk korunur */ };
+  }, []);
+
+  // Bandana seçimi değişince rengi güncelle ve kaydet
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    const root = document.documentElement;
+    const defaultColor = "#e01a1a";
+    const defaultGlow = "rgba(224, 26, 26, 0.30)";
 
     if (bandana?.color) {
-      root.style.setProperty("--accent-color", bandana.color);
       const hex = bandana.color;
       const r = parseInt(hex.slice(1, 3), 16);
       const g = parseInt(hex.slice(3, 5), 16);
       const b = parseInt(hex.slice(5, 7), 16);
-      root.style.setProperty("--accent-glow", `rgba(${r}, ${g}, ${b}, 0.15)`);
+      root.style.setProperty("--accent-color", hex);
+      root.style.setProperty("--accent-glow", `rgba(${r}, ${g}, ${b}, 0.30)`);
+      // Seçimi hatırla — tüm sayfada kalıcı
+      if (typeof localStorage !== "undefined") {
+        localStorage.setItem("capdana-accent-color", hex);
+      }
     } else {
-      root.style.setProperty("--accent-color", originalColor);
-      root.style.setProperty("--accent-glow", originalGlow);
+      // Bandana seçimi kaldırıldığında varsayılan kırmızıya dön
+      root.style.setProperty("--accent-color", defaultColor);
+      root.style.setProperty("--accent-glow", defaultGlow);
+      if (typeof localStorage !== "undefined") {
+        localStorage.removeItem("capdana-accent-color");
+      }
     }
-
-    return () => {
-      root.style.setProperty("--accent-color", originalColor);
-      root.style.setProperty("--accent-glow", originalGlow);
-    };
   }, [bandana]);
+
 
   const step = !frontId ? 1 : !bandanaId ? 2 : 3;
   const isComplete = Boolean(frontId && bandanaId);

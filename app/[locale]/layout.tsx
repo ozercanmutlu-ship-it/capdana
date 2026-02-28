@@ -106,6 +106,13 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} relative overflow-x-hidden bg-bg text-text antialiased`}
       >
+        {/* Accent renk kalıcılığı: localStorage'dan builder seçimini uygula (flash yok) */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var c=localStorage.getItem('capdana-accent-color');if(c&&/^#[0-9a-fA-F]{6}$/.test(c)){var r=parseInt(c.slice(1,3),16),g=parseInt(c.slice(3,5),16),b=parseInt(c.slice(5,7),16);document.documentElement.style.setProperty('--accent-color',c);document.documentElement.style.setProperty('--accent-glow','rgba('+r+','+g+','+b+',0.30)');}}catch(e){}}())`,
+          }}
+        />
+
         <AuthProvider>
           <NextIntlClientProvider locale={locale} messages={messages}>
             <Suspense fallback={null}>
