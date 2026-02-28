@@ -12,6 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: t('title'),
     description: t('checkout_desc'),
+    robots: { index: false, follow: false },
   };
 }
 

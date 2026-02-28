@@ -10,11 +10,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '',
     '/hazir-capdanalar',
     '/build',
-    '/siparis-onay',
     '/kargo-ve-iade',
     '/iletisim',
     '/hakkimizda',
-    '/sepet',
   ];
 
   const localizedRoutes = locales.flatMap((locale) =>

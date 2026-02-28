@@ -27,7 +27,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} | Capdana`,
+    default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -83,7 +83,6 @@ export default async function RootLayout({
   // Providing all messages to the client
   // side is the easiest way to get started
   const messages = (await import(`../../messages/${locale}.json`)).default;
-  console.log('>>> RootLayout locale:', locale);
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",

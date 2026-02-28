@@ -200,108 +200,110 @@ export default function ReadyCapdanasPage() {
 
             {/* Modal for editing / adding */}
             {editingItem && (
-                <div className="fixed inset-0 z-50 flex items-start justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto py-8 lg:py-12">
-                    <Card className="w-full max-w-lg p-6 bg-bg border-text/10 shadow-2xl space-y-6 my-auto">
-                        <div className="flex justify-between items-center border-b border-text/10 pb-4">
-                            <h2 className="text-xl font-bold">{isAdding ? "Yeni Ekle" : "Düzenle"} [Hazır Kombin]</h2>
-                            <button onClick={() => setEditingItem(null)} className="text-muted hover:text-text">✕</button>
-                        </div>
+                <div className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm">
+                    <div className="flex min-h-full items-center justify-center p-4 py-10">
+                        <Card className="w-full max-w-lg p-6 bg-bg border-text/10 shadow-2xl space-y-6">
+                            <div className="flex justify-between items-center border-b border-text/10 pb-4">
+                                <h2 className="text-xl font-bold">{isAdding ? "Yeni Hazır Kombin Ekle" : "Hazır Kombini Düzenle"}</h2>
+                                <button onClick={() => setEditingItem(null)} className="text-muted hover:text-text">✕</button>
+                            </div>
 
-                        <form onSubmit={handleSave} className="space-y-4">
-                            <div className="grid grid-cols-2 gap-4">
-                                <div className="space-y-1">
-                                    <label className="text-xs font-semibold">ID</label>
-                                    <input required disabled={!isAdding} value={editingItem.id} onChange={e => setEditingItem({ ...editingItem, id: e.target.value })} className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none disabled:opacity-50" />
+                            <form onSubmit={handleSave} className="space-y-4">
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="space-y-1">
+                                        <label className="text-xs font-semibold">ID</label>
+                                        <input required disabled={!isAdding} value={editingItem.id} onChange={e => setEditingItem({ ...editingItem, id: e.target.value })} className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none disabled:opacity-50" />
+                                    </div>
+                                    <div className="space-y-1">
+                                        <label className="text-xs font-semibold">Slug (URL)</label>
+                                        <input required value={editingItem.slug} onChange={e => setEditingItem({ ...editingItem, slug: e.target.value })} className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none" />
+                                    </div>
                                 </div>
+
                                 <div className="space-y-1">
-                                    <label className="text-xs font-semibold">Slug (URL)</label>
-                                    <input required value={editingItem.slug} onChange={e => setEditingItem({ ...editingItem, slug: e.target.value })} className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none" />
+                                    <label className="text-xs font-semibold">İsim</label>
+                                    <input required value={editingItem.name} onChange={e => setEditingItem({ ...editingItem, name: e.target.value })} className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none" />
                                 </div>
-                            </div>
 
-                            <div className="space-y-1">
-                                <label className="text-xs font-semibold">İsim</label>
-                                <input required value={editingItem.name} onChange={e => setEditingItem({ ...editingItem, name: e.target.value })} className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none" />
-                            </div>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="space-y-1">
+                                        <label className="text-xs font-semibold">Özel Fiyat (₺)</label>
+                                        <input type="number" step="0.01" value={editingItem.price === null ? "" : editingItem.price} onChange={e => setEditingItem({ ...editingItem, price: e.target.value })} placeholder="Boş bırakırsanız genel fiyat" className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none" />
+                                    </div>
+                                    <div className="space-y-1">
+                                        <label className="text-xs font-semibold">Etiketler (Tags)</label>
+                                        <input value={editingItem.tags || ""} onChange={e => setEditingItem({ ...editingItem, tags: e.target.value })} placeholder="Örn: Yeni, Trend" className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none" />
+                                    </div>
+                                </div>
 
-                            <div className="grid grid-cols-2 gap-4">
                                 <div className="space-y-1">
-                                    <label className="text-xs font-semibold">Özel Fiyat (₺)</label>
-                                    <input type="number" step="0.01" value={editingItem.price === null ? "" : editingItem.price} onChange={e => setEditingItem({ ...editingItem, price: e.target.value })} placeholder="Boş bırakırsanız genel fiyat" className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none" />
+                                    <label className="text-xs font-semibold">Nadirlik (Rarity)</label>
+                                    <select value={editingItem.rarity || "COMMON"} onChange={e => setEditingItem({ ...editingItem, rarity: e.target.value })} className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none">
+                                        <option value="COMMON">Common</option>
+                                        <option value="RARE">Rare</option>
+                                        <option value="LEGENDARY">Legendary</option>
+                                        <option value="1OF1">1 OF 1</option>
+                                    </select>
                                 </div>
+
                                 <div className="space-y-1">
-                                    <label className="text-xs font-semibold">Etiketler (Tags)</label>
-                                    <input value={editingItem.tags || ""} onChange={e => setEditingItem({ ...editingItem, tags: e.target.value })} placeholder="Örn: Yeni, Trend" className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none" />
+                                    <label className="text-xs font-semibold">Ön Panel</label>
+                                    <select required value={editingItem.frontId} onChange={e => setEditingItem({ ...editingItem, frontId: e.target.value })} className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none">
+                                        <option value="" disabled>Seçiniz</option>
+                                        {fronts.map(f => <option key={f.id} value={f.id}>{f.name} ({f.id})</option>)}
+                                    </select>
                                 </div>
-                            </div>
 
-                            <div className="space-y-1">
-                                <label className="text-xs font-semibold">Nadirlik (Rarity)</label>
-                                <select value={editingItem.rarity || "COMMON"} onChange={e => setEditingItem({ ...editingItem, rarity: e.target.value })} className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none">
-                                    <option value="COMMON">Common</option>
-                                    <option value="RARE">Rare</option>
-                                    <option value="LEGENDARY">Legendary</option>
-                                    <option value="1OF1">1 OF 1</option>
-                                </select>
-                            </div>
+                                <div className="space-y-1">
+                                    <label className="text-xs font-semibold">Bandana</label>
+                                    <select required value={editingItem.bandanaId} onChange={e => setEditingItem({ ...editingItem, bandanaId: e.target.value })} className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none">
+                                        <option value="" disabled>Seçiniz</option>
+                                        {bandanas.map(b => <option key={b.id} value={b.id}>{b.name} ({b.id})</option>)}
+                                    </select>
+                                </div>
 
-                            <div className="space-y-1">
-                                <label className="text-xs font-semibold">Ön Panel</label>
-                                <select required value={editingItem.frontId} onChange={e => setEditingItem({ ...editingItem, frontId: e.target.value })} className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none">
-                                    <option value="" disabled>Seçiniz</option>
-                                    {fronts.map(f => <option key={f.id} value={f.id}>{f.name} ({f.id})</option>)}
-                                </select>
-                            </div>
+                                <div className="space-y-1">
+                                    <label className="text-xs font-semibold flex justify-between">
+                                        <span>Görsel Yükle (veya URL girin)</span>
+                                    </label>
+                                    <div className="flex gap-2">
+                                        <input
+                                            type="file"
+                                            accept="image/*"
+                                            onChange={async (e) => {
+                                                const file = e.target.files?.[0];
+                                                if (!file) return;
+                                                const toastId = show("Yükleniyor...", "Görsel Vercel Blob'a yükleniyor.");
 
-                            <div className="space-y-1">
-                                <label className="text-xs font-semibold">Bandana</label>
-                                <select required value={editingItem.bandanaId} onChange={e => setEditingItem({ ...editingItem, bandanaId: e.target.value })} className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none">
-                                    <option value="" disabled>Seçiniz</option>
-                                    {bandanas.map(b => <option key={b.id} value={b.id}>{b.name} ({b.id})</option>)}
-                                </select>
-                            </div>
-
-                            <div className="space-y-1">
-                                <label className="text-xs font-semibold flex justify-between">
-                                    <span>Görsel Yükle (veya URL girin)</span>
-                                </label>
-                                <div className="flex gap-2">
-                                    <input
-                                        type="file"
-                                        accept="image/*"
-                                        onChange={async (e) => {
-                                            const file = e.target.files?.[0];
-                                            if (!file) return;
-                                            const toastId = show("Yükleniyor...", "Görsel Vercel Blob'a yükleniyor.");
-
-                                            try {
-                                                const res = await fetch(`/api/admin/upload?filename=${encodeURIComponent(file.name)}`, {
-                                                    method: "POST",
-                                                    body: file,
-                                                });
-                                                if (res.ok) {
-                                                    const blob = await res.json();
-                                                    setEditingItem({ ...editingItem, image: blob.url });
-                                                    show("Başarılı", "Görsel yüklendi!");
-                                                } else {
-                                                    show("Hata", "Yükleme başarısız oldu.");
+                                                try {
+                                                    const res = await fetch(`/api/admin/upload?filename=${encodeURIComponent(file.name)}`, {
+                                                        method: "POST",
+                                                        body: file,
+                                                    });
+                                                    if (res.ok) {
+                                                        const blob = await res.json();
+                                                        setEditingItem({ ...editingItem, image: blob.url });
+                                                        show("Başarılı", "Görsel yüklendi!");
+                                                    } else {
+                                                        show("Hata", "Yükleme başarısız oldu.");
+                                                    }
+                                                } catch (err) {
+                                                    show("Hata", "Görsel yüklenirken bir hata oluştu.");
                                                 }
-                                            } catch (err) {
-                                                show("Hata", "Görsel yüklenirken bir hata oluştu.");
-                                            }
-                                        }}
-                                        className="text-xs file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-[var(--accent-color)]/20 file:text-[var(--accent-color)] hover:file:bg-[var(--accent-color)]/30 w-full"
-                                    />
+                                            }}
+                                            className="text-xs file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-[var(--accent-color)]/20 file:text-[var(--accent-color)] hover:file:bg-[var(--accent-color)]/30 w-full"
+                                        />
+                                    </div>
+                                    <input required value={editingItem.image} onChange={e => setEditingItem({ ...editingItem, image: e.target.value })} placeholder="/images/ready/ornek.png" className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 mt-2 text-sm focus:border-[var(--accent-color)] outline-none text-muted" />
                                 </div>
-                                <input required value={editingItem.image} onChange={e => setEditingItem({ ...editingItem, image: e.target.value })} placeholder="/images/ready/ornek.png" className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 mt-2 text-sm focus:border-[var(--accent-color)] outline-none text-muted" />
-                            </div>
 
-                            <div className="flex justify-end gap-3 pt-4 border-t border-text/10">
-                                <Button type="button" variant="ghost" onClick={() => setEditingItem(null)}>İptal</Button>
-                                <Button type="submit" className="press-cta">Kaydet</Button>
-                            </div>
-                        </form>
-                    </Card>
+                                <div className="flex justify-end gap-3 pt-4 border-t border-text/10">
+                                    <Button type="button" variant="ghost" onClick={() => setEditingItem(null)}>İptal</Button>
+                                    <Button type="submit" className="press-cta">Kaydet</Button>
+                                </div>
+                            </form>
+                        </Card>
+                    </div>
                 </div>
             )}
         </Section>

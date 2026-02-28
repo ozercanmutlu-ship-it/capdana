@@ -183,7 +183,7 @@ export const CartView = () => {
                     quantity={item.quantity}
                     onChange={(value) => updateItemQuantity(item.id, value)}
                   />
-                  <p className="text-sm font-bold text-red tabular-nums price-reveal">
+                  <p className="text-sm font-bold text-[var(--accent-color)] tabular-nums price-reveal">
                     {formatPrice(item.quantity * item.price, locale)}
                   </p>
                 </div>
@@ -211,7 +211,7 @@ export const CartView = () => {
             )}
           >
             <span>{t('total')}</span>
-            <span className="text-2xl font-bold text-red tabular-nums price-reveal">
+            <span className="text-2xl font-bold text-[var(--accent-color)] tabular-nums price-reveal">
               {formatPrice(totalAmount, locale)}
             </span>
           </div>
