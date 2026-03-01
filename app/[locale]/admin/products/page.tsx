@@ -298,7 +298,7 @@ export default function ProductsPage() {
                                         <div className="space-y-1">
                                             <label className="text-xs font-semibold">Renk (Hex)</label>
                                             <div className="flex gap-2">
-                                                <input type="color" value={editingItem?.color?.match(/^#[0-9A-Fa-f]{6}$/) ? editingItem.color : "#000000"} onChange={e => setEditingItem({ ...editingItem, color: e.target.value })} className="h-9 w-12 rounded cursor-pointer bg-surface border border-text/10" />
+                                                <input type="color" value={editingItem?.color?.match(/^#[0-9A-Fa-f]{6}$/) ? editingItem.color.toLowerCase() : "#000000"} onChange={e => setEditingItem({ ...editingItem, color: e.target.value })} className="h-9 w-12 rounded cursor-pointer bg-surface border border-text/10" />
                                                 <input required value={editingItem?.color || "#000000"} onChange={e => setEditingItem({ ...editingItem, color: e.target.value })} className="flex-1 bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none" />
                                             </div>
                                         </div>
