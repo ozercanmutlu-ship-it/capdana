@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { ButtonLink } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
@@ -140,7 +141,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             </div>
             <div className="relative mx-auto w-[90%] max-w-md lg:w-full lg:max-w-none lg:pl-10 pb-8 lg:pb-0 overflow-hidden">
               <div className="absolute inset-0 rounded-[40px] bg-gradient-to-br from-surface to-bg/50 blur-xl opacity-50" />
-              <div className="group drill-poster relative rounded-[32px] border border-text/10 bg-surface/80 p-3 shadow-2xl backdrop-blur-sm transition-all duration-500 hover:shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
+              <Link href={`/${locale}/urun/anatolia-collection`} className="group drill-poster relative block rounded-[32px] border border-text/10 bg-surface/80 p-3 shadow-2xl backdrop-blur-sm transition-all duration-500 hover:shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
                 <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] bg-bg border border-text/5">
                   <Image
                     src="/images/vitrine/capdana-anatolia.png"
@@ -173,7 +174,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[var(--accent-color)] animate-pulse" /> Live in Vitrine</span>
                   <span>Premium System</span>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
         </Container>
@@ -184,7 +185,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         <Container className="grid gap-12 lg:grid-cols-[1fr_1.1fr] items-center relative z-10">
           <div className="relative mx-auto w-[90%] max-w-md lg:w-full lg:max-w-none pb-8 lg:pb-0 overflow-hidden">
             <div className="absolute inset-0 rounded-[40px] bg-gradient-to-br from-surface to-bg/50 blur-xl opacity-50" />
-            <div className="group drill-poster relative rounded-[32px] border border-text/10 bg-surface/80 p-3 shadow-2xl backdrop-blur-sm transition-all duration-500 hover:shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
+            <Link href={`/${locale}/urun/green-paisley`} className="group drill-poster relative block rounded-[32px] border border-text/10 bg-surface/80 p-3 shadow-2xl backdrop-blur-sm transition-all duration-500 hover:shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
               <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] bg-bg border border-text/5">
                 <Image
                   src="/images/capdana-hero-green.jpg"
@@ -216,7 +217,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 <span className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-[var(--accent-color)] animate-pulse" /> Live in Vitrine</span>
                 <span>Premium System</span>
               </div>
-            </div>
+            </Link>
           </div>
           <div className="flex flex-col justify-center space-y-6">
             {/* Tag */}

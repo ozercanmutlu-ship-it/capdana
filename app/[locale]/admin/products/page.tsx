@@ -247,16 +247,16 @@ export default function ProductsPage() {
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="space-y-1">
                                         <label className="text-xs font-semibold">ID</label>
-                                        <input required disabled={!isAdding} value={editingItem.id} onChange={e => setEditingItem({ ...editingItem, id: e.target.value })} className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none disabled:opacity-50" />
+                                        <input required disabled={!isAdding} value={editingItem?.id || ""} onChange={e => setEditingItem({ ...editingItem, id: e.target.value })} className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none disabled:opacity-50" />
                                     </div>
                                     <div className="space-y-1">
                                         <label className="text-xs font-semibold">Slug</label>
-                                        <input required value={editingItem.slug} onChange={e => setEditingItem({ ...editingItem, slug: e.target.value })} className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none" />
+                                        <input required value={editingItem?.slug || ""} onChange={e => setEditingItem({ ...editingItem, slug: e.target.value })} className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none" />
                                     </div>
                                 </div>
                                 <div className="space-y-1">
                                     <label className="text-xs font-semibold">İsim</label>
-                                    <input required value={editingItem.name} onChange={e => setEditingItem({ ...editingItem, name: e.target.value })} className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none" />
+                                    <input required value={editingItem?.name || ""} onChange={e => setEditingItem({ ...editingItem, name: e.target.value })} className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none" />
                                 </div>
                                 <div className="space-y-1">
                                     <label className="text-xs font-semibold flex justify-between">
@@ -290,7 +290,7 @@ export default function ProductsPage() {
                                             className="text-xs file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-[var(--accent-color)]/20 file:text-[var(--accent-color)] hover:file:bg-[var(--accent-color)]/30 w-full"
                                         />
                                     </div>
-                                    <input required value={editingItem.image} onChange={e => setEditingItem({ ...editingItem, image: e.target.value })} placeholder="/images/fronts/front-01.png" className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 mt-2 text-sm focus:border-[var(--accent-color)] outline-none text-muted" />
+                                    <input required value={editingItem?.image || ""} onChange={e => setEditingItem({ ...editingItem, image: e.target.value })} placeholder="/images/fronts/front-01.png" className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 mt-2 text-sm focus:border-[var(--accent-color)] outline-none text-muted" />
                                 </div>
 
                                 {tab === "BANDANAS" && (
@@ -298,13 +298,13 @@ export default function ProductsPage() {
                                         <div className="space-y-1">
                                             <label className="text-xs font-semibold">Renk (Hex)</label>
                                             <div className="flex gap-2">
-                                                <input type="color" value={editingItem.color} onChange={e => setEditingItem({ ...editingItem, color: e.target.value })} className="h-9 w-12 rounded cursor-pointer bg-surface border border-text/10" />
-                                                <input required value={editingItem.color} onChange={e => setEditingItem({ ...editingItem, color: e.target.value })} className="flex-1 bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none" />
+                                                <input type="color" value={editingItem?.color?.match(/^#[0-9A-Fa-f]{6}$/) ? editingItem.color : "#000000"} onChange={e => setEditingItem({ ...editingItem, color: e.target.value })} className="h-9 w-12 rounded cursor-pointer bg-surface border border-text/10" />
+                                                <input required value={editingItem?.color || "#000000"} onChange={e => setEditingItem({ ...editingItem, color: e.target.value })} className="flex-1 bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none" />
                                             </div>
                                         </div>
                                         <div className="space-y-1">
                                             <label className="text-xs font-semibold">Nadirlik (Rarity)</label>
-                                            <select value={editingItem.rarity} onChange={e => setEditingItem({ ...editingItem, rarity: e.target.value })} className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none">
+                                            <select value={editingItem?.rarity || "COMMON"} onChange={e => setEditingItem({ ...editingItem, rarity: e.target.value })} className="w-full bg-surface border border-text/10 rounded-lg px-3 py-2 text-sm focus:border-[var(--accent-color)] outline-none">
                                                 <option value="COMMON">Common</option>
                                                 <option value="RARE">Rare</option>
                                                 <option value="LEGENDARY">Legendary</option>

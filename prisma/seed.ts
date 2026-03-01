@@ -58,6 +58,7 @@ async function main() {
     }
 
     // ReadyCapdana
+    await prisma.readyCapdana.deleteMany();
     for (const item of readyCapdanas) {
         await prisma.readyCapdana.upsert({
             where: { id: item.id },
